@@ -1,0 +1,25 @@
+body{
+    margin-top: 50px;
+}
+
+img{
+    max-height: 50%;
+    max-width: 50%;
+}
+
+.avatar{
+    max-width: 256px;
+    max-height: 256px;
+}
+
+.text-blanco{
+    color: white;
+}
+
+.dropdown-ajuste{
+    margin-top:  10px;
+}
+
+.texto-grande{
+    font-size: 20px;
+}

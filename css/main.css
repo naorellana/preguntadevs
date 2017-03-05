@@ -1,0 +1,164 @@
+img{
+	max-width: 100%;
+}
+.quitar-float{
+	float: none;
+}
+.quitar-arriba{
+	margin-top: 100px;
+}
+.espacio-abajo{
+	margin-bottom: 50px;
+}
+.espacio-derecha{
+	margin-right: 10px;
+}
+.Cabin-Sketch{
+	font-family: 'Cabin Sketch', cursive;
+}
+.gris{
+	color: #231F20
+}
+.naranja{
+	color: #F4951A
+}
+.naraja-f{
+	color: #F56F23
+}
+.blanco{
+	color: #ECF1DD
+}
+.azul{
+	color: #254063
+}
+.nolista li{
+	list-style-type: none;
+}
+.nolista{
+	margin: 0px;
+	padding: 0px;
+}
+.fondo-gris{
+	background-color: #eee;
+}
+.padding-largo{
+	padding: 5px 10px;
+}
+.inline-block{
+	float: none;
+	display: inline-block;
+}
+
+/*colores del tema*/
+.azul2{
+	color: #014F8C;
+}
+.azul3{
+	color: #023358;
+}
+.azul1{
+	color: #0598DC;
+}
+.amarrillo1{
+	color: #F2B705;
+}
+.amarillo2{
+	color: #F1A003;
+}
+.fondo1{
+	background-color: #0598DC;
+	background: #0598DC;
+}
+
+.fondo2{
+    background-color: #014F8C;
+    background: #014F8C;
+}
+
+/* encabezado fijo*/
+#main-header {
+	background: #023358;
+	color: white;
+	height: 80px;
+	
+	width: 100%; /* hacemos que la cabecera ocupe el ancho completo de la página */
+	left: 0; /* Posicionamos la cabecera al lado izquierdo */
+	top: 0; /* Posicionamos la cabecera pegada arriba */
+	position: fixed; /* Hacemos que la cabecera tenga una posición fija */
+}
+
+
+/*
+ * Logo
+ */
+#logo-header {
+	float: left;
+	padding: 15px 0 0 20px;
+	text-decoration: none;
+}
+	#logo-header:hover {
+		color: #0b76a6;
+	}
+	
+	#logo-header .site-name {
+		display: block;
+		font-weight: 700;
+		font-size: 1.2em;
+	}
+	
+	#logo-header .site-desc {
+		display: block;
+		font-weight: 300;
+		font-size: 0.8em;
+		color: #999;
+	}
+	
+ 
+/*
+ * Navegación
+ */
+nav {
+	float: right;
+}
+	nav ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		padding-right: 20px;
+	}
+	
+		nav ul li {
+			display: inline-block;
+			line-height: 80px;
+		}
+			
+			nav ul li a {
+				display: block;
+				padding: 0 10px;
+				text-decoration: none;
+			}
+			
+				nav ul li a:hover {
+					background: #0b76a6;
+				}
+
+
+#main-footer {
+	background: #F1A003;
+	color: white;
+	text-align: center;
+	padding: 20px;
+	margin-top: 40px;
+}
+	#main-footer p {
+		margin: 0;
+	}
+	
+	#main-footer a {
+		color: white;
+	}
+
+
+body{
+  padding-top: 50px;
+}
