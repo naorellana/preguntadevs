@@ -117,14 +117,14 @@ alert("¡Gracias Por Contactarnos!");}
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Iniciar Sesión </div>
 	  <div class="panel-body">
-	    <form action="pacman.html" method="post">
+	    <form action="php/loguin.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="correo">Correo:</label>
-				<input type="text" name="correo" id="correo" class="form-control" placeholder="Correo: ">
+				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
 				<label for="clave">Contraseña:</label>
-				<input type="text" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
+				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
 			</div>
-		<button class="btn btn-success" onclick="pacman.html"> Jugar Pacman</button>
+		<button class="btn btn-success" onclick="pacman.html"> Iniciar Sesión</button>
 	</form>
 	  </div>
 	</div>
@@ -143,14 +143,14 @@ alert("¡Gracias Por Contactarnos!");}
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Registarse </div>
 	  <div class="panel-body">
-	    <form action="#" method="post">
+	    <form action="loguin.<?php  ?>" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="nombre">Nombre:</label>
 				<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre: ">
 				<label for="correo">Correo:</label>
 				<input type="text" name="correo" id="correo" class="form-control" placeholder="Correo: ">
 				<label for="clave">Contraseña:</label>
-				<input type="text" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
+				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
 			</div>
 		<button class="btn btn-primary" onclick="alerta()"> Registrarse</button>
 	</form>
@@ -158,16 +158,16 @@ alert("¡Gracias Por Contactarnos!");}
 	</div>
 	<div class="panel panel-primary">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading">Iniciar Sesión </div>
+	   <div class="panel-heading">Iniciar Sesión </div>
 	  <div class="panel-body">
-	    <form action="pacman.html" method="post">
+	    <form action="php/loguin.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="correo">Correo:</label>
-				<input type="text" name="correo" id="correo" class="form-control" placeholder="Correo: ">
+				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
 				<label for="clave">Contraseña:</label>
-				<input type="text" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
+				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
 			</div>
-		<button class="btn btn-success" onclick="pacman.html"> Jugar Pacman</button>
+		<button class="btn btn-success" onclick="pacman.html"> Iniciar Sesión</button>
 	</form>
 	  </div>
 	</div>
