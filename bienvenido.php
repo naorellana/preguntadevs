@@ -60,7 +60,7 @@ alert("¡Gracias Por Contactarnos!");}
 							</li>
 						</ul>
 
-						<form action="http://www.google.es/search" method="GET" class="navbar-form navbar-right" role="search" >
+						<form action="http://www.google.es/search" method="GET" class="navbar-form navbar-right" role="search" > 
 						<div class="form-group">
 							<input type="hidden" name="ie" value="UTF-8">
 							<input type="hidden" name="ie" value="UTF-8">
