@@ -21,9 +21,19 @@
 function alerta() {
 alert("¡Gracias Por Contactarnos!");}
 </script>
+<?php
+	session_start();
+	if (!isset($_SESSION["sessionUsuario"])){
+		header("location:/preguntadevs/");
+	}
+	
+ ?>
 <body class="">
+<?php 
+		echo "Bienvenido: ". $_SESSION["sessionUsuario"];
+	 ?>
 	<div class="container-fluid">  
-		<header class="hidden">  <!-- barra de navegacion  -->
+		<header>  <!-- barra de navegacion  -->
 			<nav class=" navbar navbar-default navbar-fixed-top navbar-inverse"> 
 				<div class="container-fluid">
 					<div class="navbar-header "> 
@@ -45,6 +55,7 @@ alert("¡Gracias Por Contactarnos!");}
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> <!--lista de elemnetos -->
 				<li><a href="#"> <span class="glyphicon glyphicon-briefcase visible-xs"> Tablero </span> <span class="visible-sm visible-md visible-lg">  Tablero</span> </a></li>
 				<li><a href="#"> <span class="glyphicon glyphicon-user visible-xs"> Configuracion </span> <span class="visible-sm visible-md visible-lg">  Configuracion</span> </a></li>
+				<li><a href="php/cerrarSession.php"> <span class="glyphicon glyphicon-remove-sign visible-xs"> Cerrar Sesión </span> <span class="visible-sm visible-md visible-lg">  Cerrar Sesión</span> </a></li>
 			</ul>
 							</li>
 						</ul>

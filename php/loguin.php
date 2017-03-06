@@ -13,7 +13,7 @@
 		if ($numero_columnas!=0){
 			session_start();
 			$_SESSION["sessionUsuario"]=$_POST["usuario"];
-			header("location:bienvenido.php");
+			header("location:/preguntadevs/bienvenido.php");
 		}else{
 			header("location:/preguntadevs/");
 		}

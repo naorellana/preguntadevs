@@ -7,3 +7,6 @@ VALUES ("naorellana","nery","alexis","orellana","cuy","aleis01")
 
 UPDATE `tbusuarios` SET `claveSeguridad` = 'alexis01' 
 WHERE `tbusuarios`.`usuarioId` = 'naorellana';
+
+INSERT INTO tbusuarios(usuarioId, nombre1, nombre2, apellido1, apellido2, claveSeguridad) 
+VALUES ("admin","admin","admin","admin","admin","admin01")

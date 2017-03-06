@@ -14,5 +14,8 @@
 <body>
 
 	<h1>Bienvenidos usuarios HOla Loguin</h1>
+	<?php 
+		echo "Bienvenido: ". $_SESSION["sessionUsuario"];
+	 ?>
 </body>
 </html>
