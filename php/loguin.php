@@ -11,9 +11,10 @@
 		$resultado-> execute ();
 		$numero_columnas=$resultado-> rowCount();
 		if ($numero_columnas!=0){
-			echo "si entraste mierda";
+			session_start();
+			$_SESSION["sessionUsuario"]=$_POST["usuario"];
+			header("location:bienvenido.php");
 		}else{
-			echo "string";
 			header("location:/preguntadevs/");
 		}
 
