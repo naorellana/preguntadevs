@@ -1,6 +1,6 @@
 <?php 
 	try {
-		$base= new PDO("mysql:host=mysql.hostinger.es; dbname=dbpreguntadevs" ,"u726364151_admin", "1005huevon");
+		$base= new PDO("mysql:host=mysql.hostinger.es; dbname=u726364151_dbprd" ,"u726364151_admin", "1005huevon");
 		$base-> setAttribute(PDO:: ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		$sql="SELECT * FROM tbusuarios WHERE usuarioId= :usuario AND claveSeguridad= :clave";
 		$resultado=$base->prepare($sql);
