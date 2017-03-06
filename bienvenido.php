@@ -24,7 +24,7 @@ alert("¡Gracias Por Contactarnos!");}
 <?php
 	session_start();
 	if (!isset($_SESSION["sessionUsuario"])){
-		header("location:/preguntadevs/");
+		header("location:http://umgproyectos.hol.es/");
 	}
 	
  ?>
