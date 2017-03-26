@@ -1,6 +1,6 @@
 <?php 
 	try {
-		$base= new PDO("mysql:host=localhost; dbname=dbpreguntadevs" ,"root", "");
+		$base= new PDO*/*/("mysql:host=mysql.hostinger.es; dbname=u726364151_dbprd" ,"u726364151_admin", "1005huevon");
 		$base-> setAttribute(PDO:: ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		$sql="SELECT * FROM tbusuarios WHERE usuarioId= :usuario AND claveSeguridad= :clave";
 		$resultado=$base->prepare($sql);
@@ -13,9 +13,9 @@
 		if ($numero_columnas!=0){
 			session_start();
 			$_SESSION["sessionUsuario"]=$_POST["usuario"];
-			header("location:/preguntadevs/bienvenido.php");
+			header("location:http://umgproyectos.hol.es/bienvenido.php");
 		}else{
-			header("location:/preguntadevs/");
+			header("location:http://umgproyectos.hol.es/");
 		}
 
 		

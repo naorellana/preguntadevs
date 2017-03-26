@@ -1,5 +1,5 @@
 <?php 
 	session_start();
 	session_destroy();
-	header("location:/preguntadevs/index.html")
+	header("location:http://umgproyectos.hol.es/")
  ?>
