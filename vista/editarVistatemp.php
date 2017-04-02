@@ -102,7 +102,7 @@ alert("¡Gracias Por Contactarnos!");}
 			$apellido1= trim($_POST["apellido1"]);
 			$apellido2= trim($_POST["apellido2"]);
 			$claveSeguridad= trim($_POST["claveSeguridad"]);
-			$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
+			$sentenciaSQL="UPDATE tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE tbusuarios.`usuarioId`='".$usuarioId ."';";
 echo $sentenciaSQL;
 require_once("../modelo/conectarModelo.php");
 $base=Conectar::conexion();

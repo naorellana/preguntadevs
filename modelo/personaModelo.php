@@ -10,7 +10,7 @@
 		public function getRegistros(){
 				require_once("paginacion.php");
 
-			$consulta=$this->db->query("SELECT * FROM dbpreguntadevs.tbusuarios LIMIT $empezar_desde, $tamanoPaginas");
+			$consulta=$this->db->query("SELECT * FROM tbusuarios LIMIT $empezar_desde, $tamanoPaginas");
 			#$consulta=$this->db->query("SELECT * FROM dbpreguntadevs.tbusuarios");
 			while ($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
 				$this->registros[]=$filas; 
