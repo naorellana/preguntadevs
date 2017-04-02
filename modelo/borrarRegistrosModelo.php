@@ -5,5 +5,5 @@ require_once("conectarModelo.php");
 $base=Conectar::conexion();
 $base->query($sentenciaSQL);
 #echo $sentenciaSQL;
-header("location:index.php")
+header("location:../bienvenida.php")
  ?>

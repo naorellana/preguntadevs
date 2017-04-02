@@ -115,8 +115,8 @@ $base->query($sentenciaSQL);
 	  <div class=\"panel-body\">
 	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
 			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for=\"usuarioid\">usuarioid:</label>
-				<input type=\"text\" name=\"usuarioId\" id=\"usuarioId\" class=\"form-control\" value='".$usuarioId."' placeholder=\"". $usuarioId."\">
+				<label for=\"usuarioid\" class=\"hidden\">usuarioid:</label>
+				<input type=\"text\" name=\"usuarioId\" id=\"usuarioId\" class=\"form-control hidden\" value='".$usuarioId."' placeholder=\"". $usuarioId."\">
 				<label for=\"nombre1\">nombre1:</label>
 				<input type=\"text\" name=\"nombre1\" id=\"nombre1\" class=\"form-control\" placeholder=\"".$nombre1." \" value='".$nombre1."'>
 				<label for=\"nombre2\">nombre2:</label>

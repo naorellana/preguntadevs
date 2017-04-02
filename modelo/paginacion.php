@@ -5,7 +5,7 @@
 	$tamanoPaginas=3;
 	if (isset($_GET["pagina"])) {
 		if ($_GET["pagina"]==1) {
-			header("Location:index.php");
+			header("Location:bienvenida.php");  #nobre de la pagina inicial
 		} else{
 			$pagina=$_GET["pagina"];
 		}
