@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
+	<meta charset="UTF-8">
+	<title>Editar Vista</title>
 	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  	<link rel="icon" type="image/png" href="imgs/umglogo.png" />
-	<link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/bootstrap.min.js" ></script>
-	<script src="js/jquery.js" ></script>
-	<title> Estadistica 2017</title> <!-- -->
-	<style type="text/css">
-		body{
-			padding-top: 20px; <!-- tamaño de la barra de navegacion es de 80 px-->
-		}
-	</style>
-	
-</head>
-<script type="text/javascript">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="../imgs/umglogo.png" />
+  <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script src="../js/bootstrap.min.js" ></script>
+  <script src="../js/jquery.js" ></script> <!-- -->
+  <style type="text/css">
+    body{
+      padding-top: 20px; <!-- tamaño de la barra de navegacion es de 80 px-->
+    }
+  </style>
+  <script type="text/javascript">
 function alerta() {
 alert("¡Gracias Por Contactarnos!");}
 </script>
+</head>
+<body>
+
+
 <body class="">
 	<div class="container-fluid">  
-		<header class="hidden">  <!-- barra de navegacion  -->
+		<header class="">  <!-- barra de navegacion  -->
 			<nav class=" navbar navbar-default navbar-fixed-top navbar-inverse"> 
 				<div class="container-fluid">
 					<div class="navbar-header "> 
@@ -83,19 +86,44 @@ alert("¡Gracias Por Contactarnos!");}
 		<section class=" col-md-9">
 		<article class=" text-center ">	
 
-			<div class="panel panel-primary">
-  <!-- Default panel contents -->
-  <div class="panel-heading"><h1 class="Cabin-Sketch naranja"> Proyecto Final Estadistica 2 </h1></div>
-  <div class="panel-body">
-    <div class="col-md-12 center-block quitar-float text-center quitar-arriba espacio-abajo fuente"> 
-		<img src="imgs/umglogo.png">
-		
-		<h2 class="naranja"> <a href="https://www.umg.edu.gt/">UMG</a> </h2>
-		<h3 class="naranja"> San josé Pinula Sección A </h3>
-	</div>
-  </div>
-</div>
+		<?php 
+		$usuarioId = $_GET["usuarioId"];
+		$nombre1= $_GET["nombre1"];
+		$nombre2= $_GET["nombre2"];
+		$apellido1= $_GET["apellido1"];
+		$apellido2= $_GET["apellido2"];
+		$claveSeguridad= $_GET["claveSeguridad"];
+			echo ";<div class=\"panel panel-primary\">
+	  <!-- Default panel contents -->
+	   <div class=\"panel-heading\">Editar Ususarios </div>
+	  <div class=\"panel-body\">
+	    <form action=\"../modelo/comandosql.php\" method=\"post\">
+			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for=\"usuarioid\">usuarioid:</label>
+				<input type=\"text\" name=\"usuarioid\" id=\"usuarioid\" class=\"form-control\" value=\"". $usuarioId."\" placeholder=\"". $usuarioId." \">
+				<label for=\"nombre1\">nombre1:</label>
+				<input type=\"text\" name=\"nombre1o\" id=\"nombre1\" class=\"form-control\" placeholder=\"". $nombre1." \" value= \"".$nombre1 ." \">
+				<label for=\"nombre2\">nombre2:</label>
+				<input type=\"text\" name=\"nombre2\" id=\"nombre2\" class=\"form-control\" placeholder=\"". $nombre2." \" value= \"".$nombre2 ."\">
+				<label for=\"apellido1\">apellido1:</label>
+				<input type=\"text\" name=\"apellido1\" id=\"apellido1\" class=\"form-control\" placeholder=\"". $apellido1." \" value= \"".$apellido1 ."\">
+				<label for=\"apellido2\">apellido2:</label>
+				<input type=\"text\" name=\"apellido2\" id=\"apellido2\" class=\"form-control\" placeholder=\"". $apellido2." \" value= \"".$apellido2 ." \">
+				<label for=\"clave\">claveSeguridad:</label>
+				<input type=\"text\" name=\"clave\" id=\"clave\" class=\"form-control\" placeholder=\"". $claveSeguridad." \" value= \"".$claveSeguridad ." \">
+			</div>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"../modelo/comandosql.php\"> Guardar</button>
+	</form>
+	  </div>
+	</div>";
+
+
 	
+		 ?>
+
+			
+
+
 	<div class="panel panel-info visible-sm visible-xs">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Registarse </div>
@@ -117,7 +145,7 @@ alert("¡Gracias Por Contactarnos!");}
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Iniciar Sesión </div>
 	  <div class="panel-body">
-	    <form action="modelo/loguin.php" method="post">
+	    <form action="php/loguin.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="correo">Correo:</label>
 				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
@@ -160,7 +188,7 @@ alert("¡Gracias Por Contactarnos!");}
 	  <!-- Default panel contents -->
 	   <div class="panel-heading">Iniciar Sesión </div>
 	  <div class="panel-body">
-	    <form action="modelo/loguin.php" method="post">
+	    <form action="php/loguin.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="correo">Correo:</label>
 				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
@@ -185,4 +213,6 @@ alert("¡Gracias Por Contactarnos!");}
 	<script src="js/jquery.js" ></script>
 	
 </body>
+
+
 </html>

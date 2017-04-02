@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>
-	<title> Estadistica 2017</title> <!-- -->
+	<title> PRIMER CRUD MVC</title> <!-- -->
 	<style type="text/css">
 		body{
 			padding-top: 20px; <!-- tamaño de la barra de navegacion es de 80 px-->
@@ -21,6 +21,13 @@
 function alerta() {
 alert("¡Gracias Por Contactarnos!");}
 </script>
+<?php
+	session_start();
+	if (!isset($_SESSION["sessionUsuario"])){
+		header("location:index.html");
+	}
+	
+ ?>
 <body class="">
 	<div class="container-fluid">  
 		<header class="hidden">  <!-- barra de navegacion  -->
@@ -83,22 +90,17 @@ alert("¡Gracias Por Contactarnos!");}
 		<section class=" col-md-9">
 		<article class=" text-center ">	
 
-			<div class="panel panel-primary">
-  <!-- Default panel contents -->
-  <div class="panel-heading"><h1 class="Cabin-Sketch naranja"> Proyecto Final Estadistica 2 </h1></div>
-  <div class="panel-body">
-    <div class="col-md-12 center-block quitar-float text-center quitar-arriba espacio-abajo fuente"> 
-		<img src="imgs/umglogo.png">
-		
-		<h2 class="naranja"> <a href="https://www.umg.edu.gt/">UMG</a> </h2>
-		<h3 class="naranja"> San josé Pinula Sección A </h3>
-	</div>
-  </div>
-</div>
+	<?php
+		require_once("controlador/personasControlador.php");
+	 ?>	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
 	
+
+	
+  
+</div>
 	<div class="panel panel-info visible-sm visible-xs">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading">Registarse </div>
+	  <div class="panel-heading">Registrarse </div>
 	  <div class="panel-body">
 	    <form action="#" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
@@ -117,7 +119,7 @@ alert("¡Gracias Por Contactarnos!");}
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Iniciar Sesión </div>
 	  <div class="panel-body">
-	    <form action="modelo/loguin.php" method="post">
+	    <form action="php/loguin.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="correo">Correo:</label>
 				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
@@ -141,7 +143,7 @@ alert("¡Gracias Por Contactarnos!");}
   	
   	<div class="panel panel-info">
 	  <!-- Default panel contents -->
-	  <div class="panel-heading">Registarse </div>
+	  <div class="panel-heading">Registrarse </div>
 	  <div class="panel-body">
 	    <form action="loguin.<?php  ?>" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
@@ -160,7 +162,7 @@ alert("¡Gracias Por Contactarnos!");}
 	  <!-- Default panel contents -->
 	   <div class="panel-heading">Iniciar Sesión </div>
 	  <div class="panel-body">
-	    <form action="modelo/loguin.php" method="post">
+	    <form action="php/loguin.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="correo">Correo:</label>
 				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
