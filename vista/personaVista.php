@@ -58,7 +58,7 @@
         <span aria-hidden="true">&raquo;</span>
       </a>
 <td></td>
-<td><a href="vista/agergarUsuario.php"><button class="btn-success">Agregar</button> </a></td>
+<td><a href="vista/agregarUsuario.php"><button class="btn-success">Agregar</button> </a></td>
 </tr>
 		 			</td>
   </table>

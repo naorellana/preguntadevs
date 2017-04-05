@@ -8,6 +8,7 @@
 			$this->registros = array();
 		}
 		public function getRegistros(){
+			#$consulta=$this->db->query('SELECT * FROM tbusuarios');
 			$consulta=$this->db->query('SELECT * FROM dbpreguntadevs.tbusuarios');
 			while ($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
 				$this->registros[]=$filas; 
