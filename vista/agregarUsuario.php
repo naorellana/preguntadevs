@@ -89,12 +89,13 @@ alert("¡Gracias Por Contactarnos!");}
 		<?php 
 
 		if (isset($_POST["guardar"])){
-			$usuarioId =trim( $_POST["usuarioId"]);
+			$usuarioId =trim( $_POST["correo"]);
 			$nombre1=trim($_POST["nombre1"]);
 			$nombre2=trim($_POST["nombre2"]);
 			$apellido1= trim($_POST["apellido1"]);
 			$apellido2= trim($_POST["apellido2"]);
-			$claveSeguridad= trim($_POST["claveSeguridad"]);
+			$claveSeguridad= trim($_POST["pais"]);
+			$fechanac= trim($_POST["fechanac"])
 			$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
 			$sentenciaSQL="INSERT INTO dbpreguntadevs.tbusuarios(`usuarioId`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `claveSeguridad`) VALUES ('".$usuarioId."','".$nombre1."','".$nombre2."','".$apellido1."','".$apellido2."','".$claveSeguridad."');";
 echo $sentenciaSQL;
@@ -105,24 +106,26 @@ $base->query($sentenciaSQL);
 			echo "<div class=\"panel panel-primary\">
 		
 	  <!-- Default panel contents -->
-	   <div class=\"panel-heading\">Ususarios </div>
+	   <div class=\"panel-heading\"> Registro De Ususarios </div>
 	  <div class=\"panel-body\">
 	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
 			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for=\"usuarioid\">usuarioid:</label>
-				<input type=\"text\" name=\"usuarioId\" id=\"usuarioId\" class=\"form-control\" placeholder=\"usuarioId\">
-				<label for=\"nombre1\">nombre1:</label>
-				<input type=\"text\" name=\"nombre1\" id=\"nombre1\" class=\"form-control\" placeholder=\"nombre1\" '>
-				<label for=\"nombre2\">nombre2:</label>
-				<input type=\"text\" name=\"nombre2\" id=\"nombre2\" class=\"form-control\" placeholder=\"nombre2\">
-				<label for=\"apellido1\">apellido1:</label>
-				<input type=\"text\" name=\"apellido1\" id=\"apellido1\" class=\"form-control\" placeholder=\"apellido1\">
-				<label for=\"apellido2\">apellido2:</label>
-				<input type=\"text\" name=\"apellido2\" id=\"apellido2\" class=\"form-control\" placeholder=\"apellido2\" >
-				<label for=\"clave\">claveSeguridad:</label>
-				<input type=\"text\" name=\"claveSeguridad\" id=\"claveSeguridad\" class=\"form-control\" placeholder=\"claveSeguridad\">
+				<label for=\"correo\">*Correo:</label>
+				<input type=\"text\" name=\"correo\" id=\"correo\" class=\"form-control\" placeholder=\"ejemplo@correo.com\">
+				<label for=\"nombre1\">*Primer Nombre:</label>
+				<input type=\"text\" name=\"nombre1\" id=\"nombre1\" class=\"form-control\" placeholder=\"Primer Nombre\" '>
+				<label for=\"nombre2\">*Segundo Nombre:</label>
+				<input type=\"text\" name=\"nombre2\" id=\"nombre2\" class=\"form-control\" placeholder=\"Segundo Nombre\">
+				<label for=\"apellido1\">*Primer Apellido:</label>
+				<input type=\"text\" name=\"apellido1\" id=\"apellido1\" class=\"form-control\" placeholder=\"Primer Apellido\">
+				<label for=\"apellido2\">*Segundo Apellido:</label>
+				<input type=\"text\" name=\"apellido2\" id=\"apellido2\" class=\"form-control\" placeholder=\"Segundo Apellido\" >
+				<label for=\"pais\">*País:</label>
+				<input type=\"text\" name=\"pais\" id=\"pais\" class=\"form-control\" placeholder=\"País\">
+				<label for=\"fechanac\">*Fecha De Nacimiento (YYYY-MM-DD):</label>
+				<input type=\"text\" name=\"fechanac\" id=\"fechanac\" class=\"form-control\" placeholder=\"YYYY-MM-DD\">
 			</div>
-		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"../modelo/comandosql.php\"> Guardar</button>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"\"> Guardar</button>
 	</form>
 	  </div>
 	</div>";
