@@ -89,19 +89,38 @@ alert("¡Gracias Por Contactarnos!");}
 		<?php 
 
 		if (isset($_POST["guardar"])){
-			$usuarioId =trim( $_POST["correo"]);
+			$correo =trim( $_POST["correo"]);
 			$nombre1=trim($_POST["nombre1"]);
 			$nombre2=trim($_POST["nombre2"]);
 			$apellido1= trim($_POST["apellido1"]);
 			$apellido2= trim($_POST["apellido2"]);
-			$claveSeguridad= trim($_POST["pais"]);
-			$fechanac= trim($_POST["fechanac"])
-			$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
-			$sentenciaSQL="INSERT INTO dbpreguntadevs.tbusuarios(`usuarioId`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `claveSeguridad`) VALUES ('".$usuarioId."','".$nombre1."','".$nombre2."','".$apellido1."','".$apellido2."','".$claveSeguridad."');";
-echo $sentenciaSQL;
+			$pais= trim($_POST["pais"]);
+			$fechanac= trim($_POST["fechanac"]);
+			#$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
+			#$sentenciaSQL="INSERT INTO dbpreguntadevs.tbusuarios(`usuarioId`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `claveSeguridad`) VALUES ('".$usuarioId."','".$nombre1."','".$nombre2."','".$apellido1."','".$apellido2."','".$claveSeguridad."');";
+			$sentenciaSQL="CALL `NUEVO_USUARIO` (\"$correo\", \"$nombre1\", \"$nombre2\",\"$apellido1\", \"$apellido2\", \"$pais\", \"$fechanac\")";
+#echo $sentenciaSQL;
 require_once("../modelo/conectarModelo.php");
 $base=Conectar::conexion();
 $base->query($sentenciaSQL);
+$consulta="SELECT USUARIO, CONTRASENA FROM TBPERSONA where CORREO=\"$correo\";"."<br>";
+#$consulta="SELECT USUARIO, CONTRASENA FROM dbpreguntadevs.tbpersona where CORREO=\"$correo\";"."<br>";
+$dato="";
+foreach ($base->query($consulta) as $dato) {
+    }
+    if ($dato['USUARIO']!="") {
+    	$mensaje="Gracias Por Registrarse A PREGUNTADEVS :)\n
+    	Su informacion de acceso es: \n 
+    	Usuario: ".$dato['USUARIO'] ."\n
+    	Contraseña: ".$dato["CONTRASENA"];
+    	#echo $mensaje;
+    	mail($correo, "Registro Exitoso a PREGUNTADEVS", $mensaje);
+    }else{
+    	$mensaje="Ocurrió Un Problema: \n Por Favor Registrate en: http://umgproyectos.hol.es/vista/agregarUsuario.php";
+    	mail($correo, "Información De Registro", $mensaje);
+    }
+	
+
 		}
 			echo "<div class=\"panel panel-primary\">
 		
@@ -153,6 +172,7 @@ $base->query($sentenciaSQL);
 	</form>
 	  </div>
 	</div>
+	
 
 			
 			
@@ -180,6 +200,20 @@ $base->query($sentenciaSQL);
 	</form>
 	  </div>
 	</div>
+
+	<div class="panel panel-primary">
+	  <!-- Default panel contents -->
+	   <div class="panel-heading">Recuperar Contraseña </div>
+	  <div class="panel-body">
+	    <form action="../controlador/infoAcceso.php" method="post">
+			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for="mail">Correo:</label>
+				<input type="text" name="mail" id="mail" class="form-control" placeholder="correoregistrado@correo.com: ">
+		<button class="btn btn-primary btn-sm	" onclick=""> Reccuperar</button>	
+	</form>
+	  </div>
+	</div>
+
 
 	
 

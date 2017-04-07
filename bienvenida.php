@@ -39,14 +39,14 @@ alert("¡Gracias Por Contactarnos!");}
 							<span class="glyphicon glyphicon-th-list"></span> <!-- usando un icono para que muestre como menu-->
 							<span class="icon-bar"></span> 
 						</button>
-						<a href="index.html" class="navbar-brand">Estadistica2</a> 
+						<a href="bienvenida.php" class="navbar-brand">< ? PREGUNTADEVS ?></a> 
 					</div>
 					<div class="collapse navbar-collapse" id="navbar-1">
 						<ul class="nav navbar-nav">
 							<li><a href="#"> <span class="glyphicon glyphicon-envelope visible-xs"> Contacto </span> <span class="visible-sm visible-md visible-lg">  Contacto</span> </a></li>
 							<li><a href="pacman.html">  <span class="glyphicon glyphicon-folder-open visible-xs"> Jugar </span> <span class="visible-sm visible-md visible-lg">  Jugar</span></a></li>
 							<li>
-								<a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-extended="true"><span class="glyphicon glyphicon-user visible-xs"> Perfil </span> <span class="visible-sm visible-md visible-lg">  Perfil <span class="caret"></span> </span>
+								<a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-extended="true"><span class="glyphicon glyphicon-user visible-xs"> <?php echo $_SESSION["sessionUsuario"];	 ?> </span> <span class="visible-sm visible-md visible-lg">  <?php echo $_SESSION["sessionUsuario"];	 ?> <span class="caret"></span> </span>
 				<!-- icono del trianguilito-->
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> <!--lista de elemnetos -->

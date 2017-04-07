@@ -2,7 +2,7 @@
 	require_once("conectarModelo.php");
 	$base=Conectar::conexion();
 	$sql="SELECT * FROM tbusuarios WHERE usuarioId= :usuario AND claveSeguridad= :clave";
-	$sql="SELECT * FROM dbpreguntadevs.tbusuarios WHERE usuarioId= :usuario AND claveSeguridad= :clave";
+	#$sql="SELECT * FROM dbpreguntadevs.tbusuarios WHERE usuarioId= :usuario AND claveSeguridad= :clave";
 		$resultado=$base->prepare($sql);
 		$usuario=htmlentities(addcslashes($_POST["usuario"],''));
 		$clave=htmlentities(addcslashes($_POST["clave"],''));
