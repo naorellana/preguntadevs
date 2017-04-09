@@ -17,10 +17,8 @@
     }
   </style>
   <script type="text/javascript">
-function alertaRegistro() {
-alert("Verifica el correo de registro en tu Bandeja de Entrada. ¡Gracias Por Formar Parte De PPREGUNTADEVS!");}
-function alertaRecupera() {
-alert("Enviaremos Tu Información al correo indicado. ¡Gracias Por Contactarnos!");}
+function alerta() {
+alert("¡Gracias Por Contactarnos!");}
 </script>
 </head>
 <body>
@@ -127,26 +125,26 @@ foreach ($base->query($consulta) as $dato) {
 			echo "<div class=\"panel panel-primary\">
 		
 	  <!-- Default panel contents -->
-	   <div class=\"panel-heading\"> Registro De Ususarios </div>
+	   <div class=\"panel-heading\"> Agregar Pregunta </div>
 	  <div class=\"panel-body\">
 	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
 			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for=\"correo\">*Correo:</label>
-				<input type=\"text\" name=\"correo\" id=\"correo\" class=\"form-control\" placeholder=\"ejemplo@correo.com\">
-				<label for=\"nombre1\">*Primer Nombre:</label>
-				<input type=\"text\" name=\"nombre1\" id=\"nombre1\" class=\"form-control\" placeholder=\"Primer Nombre\" '>
-				<label for=\"nombre2\">*Segundo Nombre:</label>
-				<input type=\"text\" name=\"nombre2\" id=\"nombre2\" class=\"form-control\" placeholder=\"Segundo Nombre\">
-				<label for=\"apellido1\">*Primer Apellido:</label>
-				<input type=\"text\" name=\"apellido1\" id=\"apellido1\" class=\"form-control\" placeholder=\"Primer Apellido\">
-				<label for=\"apellido2\">*Segundo Apellido:</label>
-				<input type=\"text\" name=\"apellido2\" id=\"apellido2\" class=\"form-control\" placeholder=\"Segundo Apellido\" >
-				<label for=\"pais\">*País:</label>
-				<input type=\"text\" name=\"pais\" id=\"pais\" class=\"form-control\" placeholder=\"País\">
-				<label for=\"fechanac\">*Fecha De Nacimiento (YYYY-MM-DD):</label>
-				<input type=\"text\" name=\"fechanac\" id=\"fechanac\" class=\"form-control\" placeholder=\"YYYY-MM-DD\">
+				<label for=\"PREGUNTA\">*PREGUNTA:</label>
+				<input type=\"text\" name=\"PREGUNTA\" id=\"PREGUNTA\" class=\"form-control\" placeholder=\"PREGUNTA\">
+				<label for=\"RESPA\">* RESPUESTA A:</label>
+				<input type=\"text\" name=\"RESPA\" id=\"RESPA\" class=\"form-control\" placeholder=\"RESPUESTA A\" '>
+				<label for=\"RESPB\">*RESPUESTA B:</label>
+				<input type=\"text\" name=\"RESPB\" id=\"RESPB\" class=\"form-control\" placeholder=\"RESPUESTA B\">
+				<label for=\"RESPC\">*RESPUESTA C:</label>
+				<input type=\"text\" name=\"RESPC\" id=\"RESPC\" class=\"form-control\" placeholder=\"RESPUESTA C\">
+				<label for=\"RESPCORRECTA\">*RESPUESTA CORRECTA:</label>
+				<input type=\"text\" name=\"RESPCORRECTA\" id=\"RESPCORRECTA\" class=\"form-control\" placeholder=\"RESPUESTA CORRECTA\">
+				<label for=\"NIVEL\">*NIVEL PREGUNTA:</label>
+				<input type=\"text\" name=\"NIVEL\" id=\"NIVEL\" class=\"form-control\" placeholder=\"NIVEL PREGUNTA\">
+				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
+				<input type=\"text\" name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\" placeholder=\"ETIQUETA O CATEGORIA\">
 			</div>
-		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"alertaRegistro()\"> Guardar</button>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"\"> Guardar</button>
 	</form>
 	  </div>
 	</div>";
@@ -170,19 +168,7 @@ foreach ($base->query($consulta) as $dato) {
 				<label for="clave">Contraseña:</label>
 				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
 			</div>
-		<button class="btn btn-success" onclick=""> Iniciar llSesión</button>
-	</form>
-	  </div>
-	</div>
-	<div class="panel panel-primary visible-xs visible-sm">
-	  <!-- Default panel contents -->
-	   <div class="panel-heading">Recuperar Contraseña </div>
-	  <div class="panel-body">
-	    <form action="../controlador/infoAcceso.php" method="post">
-			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for="mail">Correo:</label>
-				<input type="text" name="mail" id="mail" class="form-control" placeholder="correoregistrado@correo.com: ">
-		<button class="btn btn-primary btn-sm	" onclick="alertaRecupera()"> Recuperar</button>	
+		<button class="btn btn-success" onclick=""> Iniciar Sesión</button>
 	</form>
 	  </div>
 	</div>
@@ -223,7 +209,7 @@ foreach ($base->query($consulta) as $dato) {
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
 				<label for="mail">Correo:</label>
 				<input type="text" name="mail" id="mail" class="form-control" placeholder="correoregistrado@correo.com: ">
-		<button class="btn btn-primary btn-sm	" onclick="alertaRecupera()"> Recuperar</button>	
+		<button class="btn btn-primary btn-sm	" onclick=""> Reccuperar</button>	
 	</form>
 	  </div>
 	</div>

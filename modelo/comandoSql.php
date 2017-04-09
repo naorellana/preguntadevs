@@ -1,4 +1,5 @@
 <?php 
+#archivo sin uso, hacer pruebas antes de borrar definitivamnete
 require_once("conectarModelo.php");
 $base=Conectar::conexion();
 #echo $idRecibido;

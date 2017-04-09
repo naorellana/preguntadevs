@@ -21,7 +21,7 @@
 function alerta() {
 alert("¡Gracias Por Contactarnos!");}
 </script>
-<?php 
+<?php
 	session_start();
 	if (!isset($_SESSION["sessionUsuario"])){
 		header("location:index.html");
@@ -29,7 +29,7 @@ alert("¡Gracias Por Contactarnos!");}
 	
  ?>
 <body class="">
-	<div class="container-fluid ">  
+	<div class="container-fluid">  
 		<header>  <!-- barra de navegacion  -->
 			<nav class=" navbar navbar-default navbar-fixed-top navbar-inverse"> 
 				<div class="container-fluid">
@@ -43,12 +43,14 @@ alert("¡Gracias Por Contactarnos!");}
 					</div>
 					<div class="collapse navbar-collapse" id="navbar-1">
 						<ul class="nav navbar-nav">
-							<li><a href="acerca-de-preguntadevs.php"> <span class="glyphicon glyphicon-info-sign visible-xs"> Acerca De </span> <span class="visible-sm visible-md visible-lg">  Acerca De</span> </a></li>
+							<li><a href="#"> <span class="glyphicon glyphicon-envelope visible-xs"> Contacto </span> <span class="visible-sm visible-md visible-lg">  Contacto</span> </a></li>
+							<li><a href="pacman.html">  <span class="glyphicon glyphicon-folder-open visible-xs"> Jugar </span> <span class="visible-sm visible-md visible-lg">  Jugar</span></a></li>
 							<li>
 								<a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-extended="true"><span class="glyphicon glyphicon-user visible-xs"> <?php echo $_SESSION["sessionUsuario"];	 ?> </span> <span class="visible-sm visible-md visible-lg">  <?php echo $_SESSION["sessionUsuario"];	 ?> <span class="caret"></span> </span>
 				<!-- icono del trianguilito-->
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> <!--lista de elemnetos -->
+				<li><a href="#"> <span class="glyphicon glyphicon-briefcase visible-xs"> Tablero </span> <span class="visible-sm visible-md visible-lg">  Tablero</span> </a></li>
 				<li><a href="#"> <span class="glyphicon glyphicon-user visible-xs"> Configuracion </span> <span class="visible-sm visible-md visible-lg">  Configuracion</span> </a></li>
 				<li><a href="php/cerrarSession.php"> <span class="glyphicon glyphicon-remove-sign visible-xs"> Cerrar Sesión </span> <span class="visible-sm visible-md visible-lg">  Cerrar Sesión</span> </a></li>
 			</ul>
@@ -89,58 +91,46 @@ alert("¡Gracias Por Contactarnos!");}
 		<section class=" col-md-9">
 		<article class=" text-center ">	
 
+	<?php
+		require_once("controlador/personasControlador.php");
+	 ?>	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
 	
+
 	
-
-
-
   
 </div>
-	<div class="row">
-		<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% DE USUARIO</h3>
-      <div class="caption bg-info">
-        <span class="glyphicon glyphicon-user"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS CORRECCTAS</h3>
-      <div class="caption bg-success">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS ERRONEAS</h3>
-      <div class="caption bg-danger">
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="panel panel-info visible-sm visible-xs">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Registrarse </div>
+	  <div class="panel-body">
+	    <form action="#" method="post">
+			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for="nombre">Nombre:</label>
+				<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre: ">
+				<label for="correo">Correo:</label>
+				<input type="text" name="correo" id="correo" class="form-control" placeholder="Correo: ">
+				<label for="clave">Contraseña:</label>
+				<input type="text" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
+			</div>
+		<button class="btn btn-primary" onclick="alerta()"> Registrarse</button>
+	</form>
+	  </div>
 	</div>
-	
-<?php
-		require_once("controlador/preguntasControlador.php");
-	 ?>	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
-
-
-
+	<div class="panel panel-primary visible-xs visible-sm">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Iniciar Sesión </div>
+	  <div class="panel-body">
+	    <form action="php/loguin.php" method="post">
+			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for="correo">Correo:</label>
+				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
+				<label for="clave">Contraseña:</label>
+				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
+			</div>
+		<button class="btn btn-success" onclick="pacman.html"> Iniciar Sesión</button>
+	</form>
+	  </div>
+	</div>
 
 			
 			
@@ -152,28 +142,35 @@ alert("¡Gracias Por Contactarnos!");}
 	<aside class="col-md-3 hidden-xs hidden-sm text-justify">
 
   	
+  	<div class="panel panel-info">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Registrarse </div>
+	  <div class="panel-body">
+	    <form action="loguin.<?php  ?>" method="post">
+			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for="nombre">Nombre:</label>
+				<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre: ">
+				<label for="correo">Correo:</label>
+				<input type="text" name="correo" id="correo" class="form-control" placeholder="Correo: ">
+				<label for="clave">Contraseña:</label>
+				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
+			</div>
+		<button class="btn btn-primary" onclick="alerta()"> Registrarse</button>
+	</form>
+	  </div>
+	</div>
 	<div class="panel panel-primary">
 	  <!-- Default panel contents -->
-	   <div class="panel-heading">Nueva Pregunta </div>
+	   <div class="panel-heading">Iniciar Sesión </div>
 	  <div class="panel-body">
 	    <form action="php/loguin.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for="PREGUNTA">PREGUNTA:</label>
-				<input type="text" name="PREGUNTA" id="PREGUNTA" class="form-control" placeholder="Ingrese la nueva pregunta?: ">
-				<label for="RESPA">RESPUESTA A:</label>
-				<input type="text" name="RESPA" id="RESPA" class="form-control" placeholder="Respuesta A: ">
-				<label for="RESPB">RESPUESTA B:</label>
-				<input type="text" name="RESPB" id="RESPB" class="form-control" placeholder="Respuesta B: ">
-				<label for="RESPC">RESPUESTA C:</label>
-				<input type="text" name="RESPC" id="RESPC" class="form-control" placeholder="Respuesta C: ">
-				<label for="RESPCORRECTA">RESPUESTA CORRECTA:</label>
-				<input type="text" name="RESPCORRECTA" id="RESPCORRECTA" class="form-control" placeholder="Respuesta Correcta: ">
-				<label for="NIVEL">NIVEL:</label>
-				<input type="text" name="NIVEL" id="NIVEL" class="form-control" placeholder="NIVEL DE DIFICULTAD">
-				<label for="ETIQUETA">ETIQUETA:</label>
-				<input type="text" name="ETIQUETA" id="ETIQUETA" class="form-control" placeholder="ETIQUETA O CATEGORIA">
+				<label for="correo">Correo:</label>
+				<input type="text" name="usuario" id="usuario" class="form-control" placeholder="usuario: ">
+				<label for="clave">Contraseña:</label>
+				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
 			</div>
-		<button class="btn btn-success" onclick="pacman.html"> AGREGAR</button>
+		<button class="btn btn-success" onclick="pacman.html"> Iniciar Sesión</button>
 	</form>
 	  </div>
 	</div>

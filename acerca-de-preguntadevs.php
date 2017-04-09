@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>
-	<title> PRIMER CRUD MVC</title> <!-- -->
+	<title> Nery Alexis Orellana Cuy</title> <!-- -->
 	<style type="text/css">
 		body{
 			padding-top: 20px; <!-- tamaño de la barra de navegacion es de 80 px-->
@@ -85,65 +85,46 @@ alert("¡Gracias Por Contactarnos!");}
 			</nav>
 		</header>
 	</div>
+
+
 	<section class="container">
 		<section class=" col-md-9">
 		<article class=" text-center ">	
 
-	
-	
-
-
-
-  
-</div>
-	<div class="row">
-		<div class="">
-  <div class="col-sm-6 col-md-4">
+			<div class="panel panel-primary justify">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h1>SOBRE MÍ</h1> </div>
+  <div class="panel-body">
+   <div class="row">
+  <div class="col-sm-12 col-md-12">
     <div class="thumbnail">
-      <h3>% DE USUARIO</h3>
-      <div class="caption bg-info">
-        <span class="glyphicon glyphicon-user"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      <img  class="avatar thumbnail img-responsive  " src="imgs/PREGUNTADEVS.png"
+      <div class="caption">
+        <h2>Acerca del autor</h2> <br>
+        <span class="glyphicon glyphicon-wrench texto-grande"> En Mantenimiento...</span> <span class="texto-grande glyphicon glyphicon-wrench">
       </div>
     </div>
   </div>
-</div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS CORRECCTAS</h3>
-      <div class="caption bg-success">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
   </div>
 </div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS ERRONEAS</h3>
-      <div class="caption bg-danger">
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-	</div>
-	
-<?php
-		require_once("controlador/preguntasControlador.php");
-	 ?>	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
-
-
+			
+			
 
 
 			
-			
+			<div class="row visible-xs visible-sm">
+				<article class="text-center bg-primary espacio-arriba container-fluid ">
+			<div class="bg-info row ">
+				<a href="https://mobile.facebook.com/alexis.orellana2?ref=bookmarks"> <img src="imgs/rs/Facebook.png" class="col-xs-3 "> </a>
+				<a href="https://twitter.com/all_exis?s=09"> <img src="imgs/rs/Twitter-Bird.png" class="col-xs-3 quitar-float "> </a>
+				<a href="https://github.com/naorellana"> <img src="imgs/rs/Github.png" class="col-xs-3 quitar-float "> </a> 
+				<a href="https://www.linkedin.com/in/nery-alexis-orellana-cuy-3612888b/"> <img src="imgs/rs/Linkedin.png" class="col-xs-3 quitar-float "> </a> 
+				
+			</div>
+
+		</article>
+		<p class="visible-sm visible-xs bg-info">Escríbeme a: <a href="mailto:alexis_oc@yahoo.es">alexis_oc@yahoo.es</a></p>
+			</div>
 
 		</article>
 
@@ -152,40 +133,44 @@ alert("¡Gracias Por Contactarnos!");}
 	<aside class="col-md-3 hidden-xs hidden-sm text-justify">
 
   	
+  	<div class="list-group">
+  		<h4 class="list-group-item active">Sígueme  </h4>
+  		<a href="https://mobile.facebook.com/alexis.orellana2?ref=bookmarks" class="list-group-item ">Facebook</a>
+  		<a href="https://twitter.com/all_exis?s=09" class="list-group-item">Twitter</a>
+  		<a href="https://www.linkedin.com/in/nery-alexis-orellana-cuy-3612888b/" class="list-group-item">Linkedin</a>
+  		<a href="https://github.com/naorellana" class="list-group-item">Github</a>
+  	</div>
 	<div class="panel panel-primary">
 	  <!-- Default panel contents -->
-	   <div class="panel-heading">Nueva Pregunta </div>
+	  <div class="panel-heading">Escríbeme </div>
 	  <div class="panel-body">
-	    <form action="php/loguin.php" method="post">
+	    <form action="php/email.php" method="post">
 			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for="PREGUNTA">PREGUNTA:</label>
-				<input type="text" name="PREGUNTA" id="PREGUNTA" class="form-control" placeholder="Ingrese la nueva pregunta?: ">
-				<label for="RESPA">RESPUESTA A:</label>
-				<input type="text" name="RESPA" id="RESPA" class="form-control" placeholder="Respuesta A: ">
-				<label for="RESPB">RESPUESTA B:</label>
-				<input type="text" name="RESPB" id="RESPB" class="form-control" placeholder="Respuesta B: ">
-				<label for="RESPC">RESPUESTA C:</label>
-				<input type="text" name="RESPC" id="RESPC" class="form-control" placeholder="Respuesta C: ">
-				<label for="RESPCORRECTA">RESPUESTA CORRECTA:</label>
-				<input type="text" name="RESPCORRECTA" id="RESPCORRECTA" class="form-control" placeholder="Respuesta Correcta: ">
-				<label for="NIVEL">NIVEL:</label>
-				<input type="text" name="NIVEL" id="NIVEL" class="form-control" placeholder="NIVEL DE DIFICULTAD">
-				<label for="ETIQUETA">ETIQUETA:</label>
-				<input type="text" name="ETIQUETA" id="ETIQUETA" class="form-control" placeholder="ETIQUETA O CATEGORIA">
+				<label for="nombre">Nombre:</label>
+				<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre: ">
+				<label for="correo">Correo:</label>
+				<input type="text" name="correo" id="correo" class="form-control" placeholder="Correo: ">
+				<label for="mensaje">Mensaje:</label>
+				<textarea class="form-control" name="mensaje	" id="mensaje" placeholder="Escribe Tu Mensaje:"></textarea>
+				<label for="opcion">Motiivo Del Mensaje</label>
+				<select class="form-control" name="opcion" id="opcion"> <!-- form-control sirve para select, textarea, input-->
+					<option value="Comentario">Comentario</option>
+					<option value="Solicitud">Solicitud</option>
+					<option value="Consulta">Consulta</option>
+				</select>
 			</div>
-		<button class="btn btn-success" onclick="pacman.html"> AGREGAR</button>
+		<button class="btn btn-primary" onclick="alerta()"> Enviar</button>
 	</form>
 	  </div>
 	</div>
 
-	
 
 
   	
   </aside>
 	</section>
 	<footer class="container bg-primary">
-    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://norellana.hol.es/" class="text-blanco">Nery AlexisOrellana Cuy</a></p>
+    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://clicgtm.hol.es/" class="text-blanco">ClicGTM</a></p>
 	</footer> 
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>
