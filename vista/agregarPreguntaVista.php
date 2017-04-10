@@ -20,6 +20,13 @@
 function alerta() {
 alert("¡Gracias Por Contactarnos!");}
 </script>
+<?php 
+	session_start();
+	if (!isset($_SESSION["sessionUsuario"])){
+		header("location:index.html");
+	}
+	
+ ?>
 </head>
 <body>
 
@@ -89,36 +96,23 @@ alert("¡Gracias Por Contactarnos!");}
 		<?php 
 
 		if (isset($_POST["guardar"])){
-			$correo =trim( $_POST["correo"]);
-			$nombre1=trim($_POST["nombre1"]);
-			$nombre2=trim($_POST["nombre2"]);
-			$apellido1= trim($_POST["apellido1"]);
-			$apellido2= trim($_POST["apellido2"]);
-			$pais= trim($_POST["pais"]);
-			$fechanac= trim($_POST["fechanac"]);
+			$PREGUNTA =trim( $_POST["PREGUNTA"]);
+			$RESPA=trim($_POST["RESPA"]);
+			$RESPB=trim($_POST["RESPB"]);
+			$RESPC= trim($_POST["RESPC"]);
+			$RESPCORRECTA= trim($_POST["RESPCORRECTA"]);
+			$NIVEL= trim($_POST["NIVEL"]);
+			$ETIQUETA= trim($_POST["ETIQUETA"]);
+			$USUARIO= trim($_SESSION["sessionUsuario"]);
 			#$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
 			#$sentenciaSQL="INSERT INTO dbpreguntadevs.tbusuarios(`usuarioId`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `claveSeguridad`) VALUES ('".$usuarioId."','".$nombre1."','".$nombre2."','".$apellido1."','".$apellido2."','".$claveSeguridad."');";
-			$sentenciaSQL="CALL `NUEVO_USUARIO` (\"$correo\", \"$nombre1\", \"$nombre2\",\"$apellido1\", \"$apellido2\", \"$pais\", \"$fechanac\")";
-#echo $sentenciaSQL;
+			$sentenciaSQL="INSERT INTO PREGUNTAS (`IDPREGUNTA`, `PREGUNTA`, `RESPA`, `RESPB`, `RESPC`, `RESPCORRECTA`, `USUARIO`, `NIVEL`, `ETIQUETA`) 
+			VALUES (0,'".$PREGUNTA."','". $RESPA."','". $RESPB ."','". $RESPC."',". $RESPCORRECTA.",'". $USUARIO."',". $NIVEL.",". $ETIQUETA.");";
+echo $sentenciaSQL;
 require_once("../modelo/conectarModelo.php");
 $base=Conectar::conexion();
-$base->query($sentenciaSQL);
-$consulta="SELECT USUARIO, CONTRASENA FROM TBPERSONA where CORREO=\"$correo\";"."<br>";
-#$consulta="SELECT USUARIO, CONTRASENA FROM dbpreguntadevs.tbpersona where CORREO=\"$correo\";"."<br>";
-$dato="";
-foreach ($base->query($consulta) as $dato) {
-    }
-    if ($dato['USUARIO']!="") {
-    	$mensaje="Gracias Por Registrarse A PREGUNTADEVS :)\n
-    	Su informacion de acceso es: \n 
-    	Usuario: ".$dato['USUARIO'] ."\n
-    	Contraseña: ".$dato["CONTRASENA"];
-    	#echo $mensaje;
-    	mail($correo, "Registro Exitoso a PREGUNTADEVS", $mensaje);
-    }else{
-    	$mensaje="Ocurrió Un Problema: \n Por Favor Registrate en: http://umgproyectos.hol.es/vista/agregarUsuario.php";
-    	mail($correo, "Información De Registro", $mensaje);
-    }
+#$base->query($sentenciaSQL);
+
 	
 
 		}
@@ -138,11 +132,32 @@ foreach ($base->query($consulta) as $dato) {
 				<label for=\"RESPC\">*RESPUESTA C:</label>
 				<input type=\"text\" name=\"RESPC\" id=\"RESPC\" class=\"form-control\" placeholder=\"RESPUESTA C\">
 				<label for=\"RESPCORRECTA\">*RESPUESTA CORRECTA:</label>
-				<input type=\"text\" name=\"RESPCORRECTA\" id=\"RESPCORRECTA\" class=\"form-control\" placeholder=\"RESPUESTA CORRECTA\">
+				<select name=\"RESPCORRECTA\" id=\"RESPCORRECTA\" class=\"form-control\">
+				  <option value=\"1\">A</option>
+				  <option value=\"2\">B</option>
+				  <option value=\"3\">C</option>
+				</select>
 				<label for=\"NIVEL\">*NIVEL PREGUNTA:</label>
-				<input type=\"text\" name=\"NIVEL\" id=\"NIVEL\" class=\"form-control\" placeholder=\"NIVEL PREGUNTA\">
+				<select name=\"NIVEL\" id=\"NIVEL\" class=\"form-control\">";
+				require_once("../modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$base->query($sentenciaSQL);
+				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
+				#$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL";
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
+				    }	
+				echo "</select>
 				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
-				<input type=\"text\" name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\" placeholder=\"ETIQUETA O CATEGORIA\">
+				<select name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\">";
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
+				#$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS";
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";
+				    }	
+				echo "</select>
 			</div>
 		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"\"> Guardar</button>
 	</form>
@@ -222,7 +237,7 @@ foreach ($base->query($consulta) as $dato) {
   </aside>
 	</section>
 	<footer class="container bg-primary">
-    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://norellana.hol.es/" class="text-blanco">Nery AlexisOrellana Cuy</a></p>
+    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://norellana.hol.es/" class="text-blanco">Nery Alexis Orellana Cuy</a></p>
 	</footer> 
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>

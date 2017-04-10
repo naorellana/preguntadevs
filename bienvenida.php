@@ -20,6 +20,8 @@
 <script type="text/javascript">
 function alerta() {
 alert("¡Gracias Por Contactarnos!");}
+function alertaTest() {
+alert("¡Tus respuestas fueron enviadas!");}
 </script>
 <?php 
 	session_start();
@@ -136,7 +138,49 @@ alert("¡Gracias Por Contactarnos!");}
 	</div>
 	
 <?php
-		require_once("controlador/preguntasControlador.php");
+if (isset($_POST["generar"])){
+		$N=trim( $_POST["NIVEL"]);
+		$e=trim( $_POST["ETIQUETA"]);
+		require_once("modelo/preguntaModelo.php");
+$registros=new Preguntas_modelo();
+$matrizRegistros=$registros->getRegistros($N,$e);	
+require_once("vista/preguntasVista.php");
+
+			}
+		echo "<div class=\"panel panel-primary\">
+		
+	  <!-- Default panel contents -->
+	   <div class=\"panel-heading\"> Nuevo Test </div>
+	  <div class=\"panel-body\">
+	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
+			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for=\"NIVEL\">*NIVEL :</label>
+				<select name=\"NIVEL\" id=\"NIVEL\" class=\"form-control\">";
+				require_once("modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$base->query($sentenciaSQL);
+				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
+				$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
+				    }	
+				echo "</select>
+				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
+				<select name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\">";
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";
+				    }	
+
+				echo "</select>
+			</div>
+		<button name=\"generar\" id=\"generar\" class=\"btn btn-success\" onclick=\"\"> generar</button>  
+	</form>
+	  </div>
+	</div>";
 	 ?>	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
 
 
@@ -151,32 +195,80 @@ alert("¡Gracias Por Contactarnos!");}
 	</section>
 	<aside class="col-md-3 hidden-xs hidden-sm text-justify">
 
-  	
-	<div class="panel panel-primary">
+  	<?php 
+
+		if (isset($_POST["guardar"])){
+			$PREGUNTA =trim( $_POST["PREGUNTA"]);
+			$RESPA=trim($_POST["RESPA"]);
+			$RESPB=trim($_POST["RESPB"]);
+			$RESPC= trim($_POST["RESPC"]);
+			$RESPCORRECTA= trim($_POST["RESPCORRECTA"]);
+			$NIVEL= trim($_POST["NIVEL"]);
+			$ETIQUETA= trim($_POST["ETIQUETA"]);
+			$USUARIO= trim($_SESSION["sessionUsuario"]);
+			#$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
+			#$sentenciaSQL="INSERT INTO dbpreguntadevs.tbusuarios(`usuarioId`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `claveSeguridad`) VALUES ('".$usuarioId."','".$nombre1."','".$nombre2."','".$apellido1."','".$apellido2."','".$claveSeguridad."');";
+			$sentenciaSQL="INSERT INTO dbpreguntadevs.PREGUNTAS (`IDPREGUNTA`, `PREGUNTA`, `RESPA`, `RESPB`, `RESPC`, `RESPCORRECTA`, `USUARIO`, `NIVEL`, `ETIQUETA`) 
+			VALUES (0,'".$PREGUNTA."','". $RESPA."','". $RESPB ."','". $RESPC."',". $RESPCORRECTA.",'". $USUARIO."',". $NIVEL.",". $ETIQUETA.");";
+echo $sentenciaSQL;
+require_once("modelo/conectarModelo.php");
+$base=Conectar::conexion();
+$base->query($sentenciaSQL);
+
+	
+
+		}
+			echo "<div class=\"panel panel-primary\">
+		
 	  <!-- Default panel contents -->
-	   <div class="panel-heading">Nueva Pregunta </div>
-	  <div class="panel-body">
-	    <form action="php/loguin.php" method="post">
-			<div class="form-group"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for="PREGUNTA">PREGUNTA:</label>
-				<input type="text" name="PREGUNTA" id="PREGUNTA" class="form-control" placeholder="Ingrese la nueva pregunta?: ">
-				<label for="RESPA">RESPUESTA A:</label>
-				<input type="text" name="RESPA" id="RESPA" class="form-control" placeholder="Respuesta A: ">
-				<label for="RESPB">RESPUESTA B:</label>
-				<input type="text" name="RESPB" id="RESPB" class="form-control" placeholder="Respuesta B: ">
-				<label for="RESPC">RESPUESTA C:</label>
-				<input type="text" name="RESPC" id="RESPC" class="form-control" placeholder="Respuesta C: ">
-				<label for="RESPCORRECTA">RESPUESTA CORRECTA:</label>
-				<input type="text" name="RESPCORRECTA" id="RESPCORRECTA" class="form-control" placeholder="Respuesta Correcta: ">
-				<label for="NIVEL">NIVEL:</label>
-				<input type="text" name="NIVEL" id="NIVEL" class="form-control" placeholder="NIVEL DE DIFICULTAD">
-				<label for="ETIQUETA">ETIQUETA:</label>
-				<input type="text" name="ETIQUETA" id="ETIQUETA" class="form-control" placeholder="ETIQUETA O CATEGORIA">
+	   <div class=\"panel-heading\"> Agregar Pregunta </div>
+	  <div class=\"panel-body\">
+	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
+			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for=\"PREGUNTA\">*PREGUNTA:</label>
+				<input type=\"text\" name=\"PREGUNTA\" id=\"PREGUNTA\" class=\"form-control\" placeholder=\"PREGUNTA\">
+				<label for=\"RESPA\">* RESPUESTA A:</label>
+				<input type=\"text\" name=\"RESPA\" id=\"RESPA\" class=\"form-control\" placeholder=\"RESPUESTA A\" '>
+				<label for=\"RESPB\">*RESPUESTA B:</label>
+				<input type=\"text\" name=\"RESPB\" id=\"RESPB\" class=\"form-control\" placeholder=\"RESPUESTA B\">
+				<label for=\"RESPC\">*RESPUESTA C:</label>
+				<input type=\"text\" name=\"RESPC\" id=\"RESPC\" class=\"form-control\" placeholder=\"RESPUESTA C\">
+				<label for=\"RESPCORRECTA\">*RESPUESTA CORRECTA:</label>
+				<select name=\"RESPCORRECTA\" id=\"RESPCORRECTA\" class=\"form-control\">
+				  <option value=\"1\">A</option>
+				  <option value=\"2\">B</option>
+				  <option value=\"3\">C</option>
+				</select>
+				<label for=\"NIVEL\">*NIVEL PREGUNTA:</label>
+				<select name=\"NIVEL\" id=\"NIVEL\" class=\"form-control\">";
+				require_once("modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$base->query($sentenciaSQL);
+				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
+				$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
+				    }	
+				echo "</select>
+				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
+				<select name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\">";
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";
+				    }	
+				echo "</select>
 			</div>
-		<button class="btn btn-success" onclick="pacman.html"> AGREGAR</button>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"\"> Guardar</button>
 	</form>
 	  </div>
-	</div>
+	</div>";
+
+	
+	
+		 ?>
 
 	
 
@@ -185,8 +277,8 @@ alert("¡Gracias Por Contactarnos!");}
   </aside>
 	</section>
 	<footer class="container bg-primary">
-    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://norellana.hol.es/" class="text-blanco">Nery AlexisOrellana Cuy</a></p>
-	</footer> 
+    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://norellana.hol.es/" class="text-blanco">Nery Alexis Orellana Cuy</a></p>
+	</footer>  
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>
 	

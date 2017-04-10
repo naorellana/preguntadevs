@@ -97,50 +97,79 @@ alert("¡Gracias Por Contactarnos!");}
 		<?php 
 
 		if (!isset($_POST["guardar"])){
-			$usuarioId =trim($_GET["usuarioId"]);
-			$nombre1=trim($_GET["nombre1"]);
-			$nombre2=trim($_GET["nombre2"]);
-			$apellido1=trim($_GET["apellido1"]);
-			$apellido2= trim($_GET["apellido2"]);
-			$claveSeguridad= trim($_GET["claveSeguridad"]);
+			$PREGUNTA =trim( $_GET["PREGUNTA"]);
+			$RESPA=trim($_GET["RESPA"]);
+			$RESPB=trim($_GET["RESPB"]);
+			$RESPC= trim($_GET["RESPC"]);
+			$USUARIO= trim($_SESSION["sessionUsuario"]);
 		}else{
-			$usuarioId =trim( $_POST["usuarioId"]);
-			$nombre1=trim($_POST["nombre1"]);
-			$nombre2=trim($_POST["nombre2"]);
-			$apellido1= trim($_POST["apellido1"]);
-			$apellido2= trim($_POST["apellido2"]);
-			$claveSeguridad= trim($_POST["claveSeguridad"]);
-			$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
+			$PREGUNTA =trim( $_POST["PREGUNTA"]);
+			$RESPA=trim($_POST["RESPA"]);
+			$RESPB=trim($_POST["RESPB"]);
+			$RESPC= trim($_POST["RESPC"]);
+			$USUARIO=$_SESSION["sessionUsuario"];
+			$RESPCORRECTA= trim($_POST["RESPCORRECTA"]);
+			#$NIVEL= trim($_POST["NIVEL"]);
+			#$ETIQUETA= trim($_POST["ETIQUETA"]);
+			#$USUARIO= trim($_SESSION["sessionUsuario"]);
+			$sentenciaSQL="UPDATE dbpreguntadevs.PREGUNTAS SET `PREGUNTA`='".$PREGUNTA."',`RESPA`='".$RESPA."',`RESPB`='".$RESPB ."',`RESPC`='".$RESPC."',`RESPCORRECTA`='".$RESPC."',`NIVEL`='".$NIVEL."' WHERE dbpreguntadevs.PREGUNTAS.`USUARIO`='".$USUARIO ."';";
 echo $sentenciaSQL;
 require_once("../modelo/conectarModelo.php");
 $base=Conectar::conexion();
-$base->query($sentenciaSQL);
+#$base->query($sentenciaSQL);
 		}
+		$USUARIO=$_SESSION["sessionUsuario"];
+		$sentenciaSQL="UPDATE dbpreguntadevs.PREGUNTAS SET `PREGUNTA`='".$PREGUNTA."',`RESPA`='".$RESPA."',`RESPB`='".$RESPB ."',`RESPC`='".$RESPC."',`RESPCORRECTA`='".$RESPC."',`NIVEL`='".$RESPC."' WHERE dbpreguntadevs.PREGUNTAS.`USUARIO`='".$USUARIO ."';";
+echo $sentenciaSQL;
+
+
 			echo "<div class=\"panel panel-primary\">
 		
 	  <!-- Default panel contents -->
-	   <div class=\"panel-heading\">Editar Ususarios </div>
+	   <div class=\"panel-heading\"> Agregar Pregunta </div>
 	  <div class=\"panel-body\">
 	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
 			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for=\"usuarioid\" class=\"hidden\">usuarioid:</label>
-				<input type=\"text\" name=\"usuarioId\" id=\"usuarioId\" class=\"form-control hidden\" value='".$usuarioId."' placeholder=\"". $usuarioId."\">
-				<label for=\"nombre1\">nombre1:</label>
-				<input type=\"text\" name=\"nombre1\" id=\"nombre1\" class=\"form-control\" placeholder=\"".$nombre1." \" value='".$nombre1."'>
-				<label for=\"nombre2\">nombre2:</label>
-				<input type=\"text\" name=\"nombre2\" id=\"nombre2\" class=\"form-control\" placeholder=\"". $nombre2." \" value= \"".$nombre2."\">
-				<label for=\"apellido1\">apellido1:</label>
-				<input type=\"text\" name=\"apellido1\" id=\"apellido1\" class=\"form-control\" placeholder=\"". $apellido1." \" value= \"".$apellido1."\">
-				<label for=\"apellido2\">apellido2:</label>
-				<input type=\"text\" name=\"apellido2\" id=\"apellido2\" class=\"form-control\" placeholder=\"". $apellido2." \" value=\"".$apellido2."\">
-				<label for=\"clave\">claveSeguridad:</label>
-				<input type=\"text\" name=\"claveSeguridad\" id=\"claveSeguridad\" class=\"form-control\" placeholder=\"". $claveSeguridad." \" value=\"".$claveSeguridad."\">
+				<label for=\"PREGUNTA\">*PREGUNTA:</label>
+				<input type=\"text\" name=\"PREGUNTA\" id=\"PREGUNTA\" class=\"form-control\" placeholder=\"PREGUNTA\" value='".$PREGUNTA."'>
+				<label for=\"RESPA\">* RESPUESTA A:</label>
+				<input type=\"text\" name=\"RESPA\" id=\"RESPA\" class=\"form-control\" placeholder=\"RESPUESTA A\" value='".$RESPA."'>
+				<label for=\"RESPB\">*RESPUESTA B:</label>
+				<input type=\"text\" name=\"RESPB\" id=\"RESPB\" class=\"form-control\" placeholder=\"RESPUESTA B\"value='".$RESPB."'>
+				<label for=\"RESPC\">*RESPUESTA C:</label>
+				<input type=\"text\" name=\"RESPC\" id=\"RESPC\" class=\"form-control\" placeholder=\"RESPUESTA C\"value='".$RESPC."'>
+				<label for=\"RESPCORRECTA\">*RESPUESTA CORRECTA:</label>
+				<select name=\"RESPCORRECTA\" id=\"RESPCORRECTA\" class=\"form-control\">
+				  <option value=\"1\">A</option>
+				  <option value=\"2\">B</option>
+				  <option value=\"3\">C</option>
+				</select>
+				<label for=\"NIVEL\">*NIVEL PREGUNTA:</label>
+				<select name=\"NIVEL\" id=\"NIVEL\" class=\"form-control\">";
+				require_once("../modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$base->query($sentenciaSQL);
+				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
+				#$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL";
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
+				    }	
+				echo "</select>
+				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
+				<select name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\">";
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
+				#$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS";
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";
+				    }	
+				echo "</select>
 			</div>
-		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"../modelo/comandosql.php\"> Guardar</button>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"\"> Guardar</button>
 	</form>
 	  </div>
 	</div>";
-
 	
 	
 		 ?>

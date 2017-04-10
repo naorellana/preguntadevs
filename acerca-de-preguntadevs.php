@@ -93,14 +93,14 @@ alert("¡Gracias Por Contactarnos!");}
 
 			<div class="panel panel-primary justify">
   <!-- Default panel contents -->
-  <div class="panel-heading"><h1>SOBRE MÍ</h1> </div>
+  <div class="panel-heading"><h1>SOBRE NOSOTROS</h1> </div>
   <div class="panel-body">
    <div class="row">
   <div class="col-sm-12 col-md-12">
     <div class="thumbnail">
       <img  class="avatar thumbnail img-responsive  " src="imgs/PREGUNTADEVS.png"
       <div class="caption">
-        <h2>Acerca del autor</h2> <br>
+        <h2>Acerca de PREGUNTADEVS</h2> <br>
         <span class="glyphicon glyphicon-wrench texto-grande"> En Mantenimiento...</span> <span class="texto-grande glyphicon glyphicon-wrench">
       </div>
     </div>
@@ -152,7 +152,7 @@ alert("¡Gracias Por Contactarnos!");}
 				<input type="text" name="correo" id="correo" class="form-control" placeholder="Correo: ">
 				<label for="mensaje">Mensaje:</label>
 				<textarea class="form-control" name="mensaje	" id="mensaje" placeholder="Escribe Tu Mensaje:"></textarea>
-				<label for="opcion">Motiivo Del Mensaje</label>
+				<label for="opcion">Motivo Del Mensaje</label>
 				<select class="form-control" name="opcion" id="opcion"> <!-- form-control sirve para select, textarea, input-->
 					<option value="Comentario">Comentario</option>
 					<option value="Solicitud">Solicitud</option>
@@ -170,7 +170,7 @@ alert("¡Gracias Por Contactarnos!");}
   </aside>
 	</section>
 	<footer class="container bg-primary">
-    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://clicgtm.hol.es/" class="text-blanco">ClicGTM</a></p>
+    	<p class="text-center">DERECHOS RESERVADOS &copy; 2017 <a href="http://norellana.hol.es/" class="text-blanco">Nery Alexis Orellana Cuy</a></p>
 	</footer> 
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>
