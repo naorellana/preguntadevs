@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>
-	<title> Bienvenido PPREGUNTADEVS</title> <!-- -->
+	<title> Configuraciones De Usuario</title> <!-- -->
 	<style type="text/css">
 		body{
 			padding-top: 20px; <!-- tamaño de la barra de navegacion es de 80 px-->
@@ -92,8 +92,124 @@ alert("¡Tus respuestas fueron enviadas!");}
 		<article class=" text-center ">	
 
 	
-	
+	<?php 
+	$USUARIO=$_SESSION["sessionUsuario"];
+		if (!isset($_POST["guardar"])){
+			require_once("modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$base->query($sentenciaSQL);
+				$consulta="SELECT * FROM TBPERSONA"; #HOSTINGER
+				#$consulta="SELECT * FROM dbpreguntadevs.TBPERSONA WHERE USUARIO='$USUARIO'"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					
+				    }
+			$CORREO =trim($dato["CORREO"]);
+			$NOMBRE1=trim($dato["NOMBRE1"]);
+			$NOMBRE2=trim($dato["NOMBRE2"]);
+			$APELLIDO1=trim($dato["APELLIDO1"]);
+			$APELLIDO2= trim($dato["APELLIDO2"]);
+			$PAIS= trim($dato["PAIS"]);
+			$FECHANAC= trim($dato["FECHANAC"]);
+			$USUARIO= trim($dato["USUARIO"]);
+			$CONTRASENA= trim($dato["CONTRASENA"]);
 
+		}else{
+			$CORREO =trim($_GET["CORREO"]);
+			$NOMBRE1=trim($_GET["NOMBRE1"]);
+			$NOMBRE2=trim($_GET["NOMBRE2"]);
+			$APELLIDO1=trim($_GET["APELLIDO1"]);
+			$APELLIDO2= trim($_GET["APELLIDO2"]);
+			$PAIS= trim($_GET["PAIS"]);
+			$FECHANAC= trim($_GET["FECHANAC"]);
+			$USUARIO= trim($_GET["USUARIO"]);
+			$CONTRASENA= trim($_GET["CONTRASENA"]);
+			$sentenciaSQL="UPDATE dbpreguntadevs.TBPERSONA SET `CORREO`='".$usuarioId."',`NOMBRE1`='".$NOMBRE1."',`NOMBRE2`='".$NOMBRE2 ."',`APELLIDO1`='".$APELLIDO1."',`APELLIDO2`='".$APELLIDO2."',`PAIS`='".$PAIS."' WHERE dbpreguntadevs.TBPERSONA.`USUARIO`='".$USUARIOUSUARIO ."';";
+echo $sentenciaSQL;
+require_once("../modelo/conectarModelo.php");
+$base=Conectar::conexion();
+#$base->query($sentenciaSQL);
+		}
+			echo "<div class=\"panel panel-primary visible-xs visible-sm\">
+		
+	  <!-- Default panel contents -->
+	   <div class=\"panel-heading\">Editar Información </div>
+	  <div class=\"panel-body\">
+	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
+			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for=\"CORREO\" class=\"hidden\">usuarioid:</label>
+				<input type=\"text\" name=\"CORREO\" id=\"CORREO\" class=\"form-control hidden\" value='".$CORREO."' placeholder=\"". $CORREO."\">
+				<label for=\"NOMBRE1\">nombre1:</label>
+				<input type=\"text\" name=\"NOMBRE1\" id=\"NOMBRE1\" class=\"form-control\" placeholder=\"".$NOMBRE1." \" value='".$NOMBRE1."'>
+				<label for=\"NOMBRE2\">nombre2:</label>
+				<input type=\"text\" name=\"NOMBRE2\" id=\"NOMBRE2\" class=\"form-control\" placeholder=\"". $NOMBRE2." \" value= \"".$NOMBRE2."\">
+				<label for=\"APELLIDO1\">apellido1:</label>
+				<input type=\"text\" name=\"APELLIDO1\" id=\"APELLIDO1\" class=\"form-control\" placeholder=\"". $APELLIDO1." \" value= \"".$APELLIDO1."\">
+				<label for=\"APELLIDO2\">apellido2:</label>
+				<input type=\"text\" name=\"apellido2\" id=\"APELLIDO2\" class=\"form-control\" placeholder=\"". $APELLIDO2." \" value=\"".$APELLIDO2."\">
+				<label for=\"PAIS\">PAIS:</label>
+				<input type=\"text\" name=\"PAIS\" id=\"PAIS\" class=\"form-control\" placeholder=\"". $PAIS." \" value=\"".$PAIS."\">
+				<label for=\"FECHANAC\">FECHANAC:</label>
+				<input type=\"text\" name=\"FECHANAC\" id=\"FECHANAC\" class=\"form-control\" placeholder=\"". $FECHANAC." \" value=\"".$FECHANAC."\">
+				<label for=\"CONTRASENA\">CONTRASENA:</label>
+				<input type=\"password\" name=\"CONTRASENA\" id=\"CONTRASENA\" class=\"form-control\" placeholder=\"". $CONTRASENA." \" value=\"".$CONTRASENA."\">
+			</div>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"../modelo/comandosql.php\"> Guardar</button>
+	</form>
+		   
+	  </div>
+
+	</div>";
+	echo "<td> <a href='modelo/borrarRegistrosModelo.php?usuarioId=". $USUARIO . "' > <button class='btn btn-danger visible-xs visible-sm'> Eliminar Cuenta</button> </a>  </td> <br> <br>";
+
+	
+	
+		 ?>
+
+
+
+
+  
+</div>
+	<div class="row">
+		<div class="">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <h3>% DE USUARIO</h3>
+      <div class="caption bg-info">
+        <span class="glyphicon glyphicon-user"></span>
+        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <h3>% RESPUESTAS CORRECCTAS</h3>
+      <div class="caption bg-success">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <h3>% RESPUESTAS ERRONEAS</h3>
+      <div class="caption bg-danger">
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+	
 <?php
 if (isset($_POST["generar"])){
 		$N=trim( $_POST["NIVELT"]);
@@ -141,49 +257,6 @@ require_once("vista/preguntasVista.php");
 	 ?>	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
 
 
-  
-</div>
-	<div class="row">
-		<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% DE USUARIO</h3>
-      <div class="caption bg-info">
-        <span class="glyphicon glyphicon-user"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS CORRECTAS</h3>
-      <div class="caption bg-success">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS ERRONEAS</h3>
-      <div class="caption bg-danger">
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-	</div>
-	
-
-
 
 
 			
@@ -194,6 +267,81 @@ require_once("vista/preguntasVista.php");
 		
 	</section>
 	<aside class="col-md-3 hidden-xs hidden-sm text-justify">
+
+	<?php 
+	$USUARIO=$_SESSION["sessionUsuario"];
+		if (!isset($_POST["guardar"])){
+			require_once("modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$base->query($sentenciaSQL);
+				$consulta="SELECT * FROM TBPERSONA"; #HOSTINGER
+				#$consulta="SELECT * FROM dbpreguntadevs.TBPERSONA WHERE USUARIO='$USUARIO'"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					
+				    }
+			$CORREO =trim($dato["CORREO"]);
+			$NOMBRE1=trim($dato["NOMBRE1"]);
+			$NOMBRE2=trim($dato["NOMBRE2"]);
+			$APELLIDO1=trim($dato["APELLIDO1"]);
+			$APELLIDO2= trim($dato["APELLIDO2"]);
+			$PAIS= trim($dato["PAIS"]);
+			$FECHANAC= trim($dato["FECHANAC"]);
+			$USUARIO= trim($dato["USUARIO"]);
+			$CONTRASENA= trim($dato["CONTRASENA"]);
+
+		}else{
+			$CORREO =trim($_GET["CORREO"]);
+			$NOMBRE1=trim($_GET["NOMBRE1"]);
+			$NOMBRE2=trim($_GET["NOMBRE2"]);
+			$APELLIDO1=trim($_GET["APELLIDO1"]);
+			$APELLIDO2= trim($_GET["APELLIDO2"]);
+			$PAIS= trim($_GET["PAIS"]);
+			$FECHANAC= trim($_GET["FECHANAC"]);
+			$USUARIO= trim($_GET["USUARIO"]);
+			$CONTRASENA= trim($_GET["CONTRASENA"]);
+			$sentenciaSQL="UPDATE dbpreguntadevs.TBPERSONA SET `CORREO`='".$usuarioId."',`NOMBRE1`='".$NOMBRE1."',`NOMBRE2`='".$NOMBRE2 ."',`APELLIDO1`='".$APELLIDO1."',`APELLIDO2`='".$APELLIDO2."',`PAIS`='".$PAIS."' WHERE dbpreguntadevs.TBPERSONA.`USUARIO`='".$USUARIOUSUARIO ."';";
+echo $sentenciaSQL;
+require_once("../modelo/conectarModelo.php");
+$base=Conectar::conexion();
+#$base->query($sentenciaSQL);
+		}
+			echo "<div class=\"panel panel-primary\">
+		
+	  <!-- Default panel contents -->
+	   <div class=\"panel-heading\">Editar Información </div>
+	  <div class=\"panel-body\">
+	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
+			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for=\"CORREO\" class=\"hidden\">usuarioid:</label>
+				<input type=\"text\" name=\"CORREO\" id=\"CORREO\" class=\"form-control hidden\" value='".$CORREO."' placeholder=\"". $CORREO."\">
+				<label for=\"NOMBRE1\">nombre1:</label>
+				<input type=\"text\" name=\"NOMBRE1\" id=\"NOMBRE1\" class=\"form-control\" placeholder=\"".$NOMBRE1." \" value='".$NOMBRE1."'>
+				<label for=\"NOMBRE2\">nombre2:</label>
+				<input type=\"text\" name=\"NOMBRE2\" id=\"NOMBRE2\" class=\"form-control\" placeholder=\"". $NOMBRE2." \" value= \"".$NOMBRE2."\">
+				<label for=\"APELLIDO1\">apellido1:</label>
+				<input type=\"text\" name=\"APELLIDO1\" id=\"APELLIDO1\" class=\"form-control\" placeholder=\"". $APELLIDO1." \" value= \"".$APELLIDO1."\">
+				<label for=\"APELLIDO2\">apellido2:</label>
+				<input type=\"text\" name=\"apellido2\" id=\"APELLIDO2\" class=\"form-control\" placeholder=\"". $APELLIDO2." \" value=\"".$APELLIDO2."\">
+				<label for=\"PAIS\">PAIS:</label>
+				<input type=\"text\" name=\"PAIS\" id=\"PAIS\" class=\"form-control\" placeholder=\"". $PAIS." \" value=\"".$PAIS."\">
+				<label for=\"FECHANAC\">FECHANAC:</label>
+				<input type=\"text\" name=\"FECHANAC\" id=\"FECHANAC\" class=\"form-control\" placeholder=\"". $FECHANAC." \" value=\"".$FECHANAC."\">
+				<label for=\"CONTRASENA\">CONTRASENA:</label>
+				<input type=\"password\" name=\"CONTRASENA\" id=\"CONTRASENA\" class=\"form-control\" placeholder=\"". $CONTRASENA." \" value=\"".$CONTRASENA."\">
+			</div>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"../modelo/comandosql.php\"> Guardar</button>
+	</form>
+		   
+	  </div>
+
+	</div>";
+	echo "<td> <a href='modelo/borrarRegistrosModelo.php?usuarioId=". $USUARIO . "' > <button class='btn btn-danger'> Eliminar Cuenta</button> </a>  </td> <br> <br>";
+
+	
+	
+		 ?>
+
 
   	<?php 
 

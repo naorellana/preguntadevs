@@ -4,12 +4,12 @@
 
 	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  	<link rel="icon" type="image/png" href="imgs/umglogo.png" />
+  	<link rel="icon" type="image/png" href="imgs/PREGUNTADEVS.png" />
 	<link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js" ></script>
 	<script src="js/jquery.js" ></script>
-	<title> Nery Alexis Orellana Cuy</title> <!-- -->
+	<title> Acerca de PREGUNTADEVS</title> <!-- -->
 	<style type="text/css">
 		body{
 			padding-top: 20px; <!-- tamaño de la barra de navegacion es de 80 px-->

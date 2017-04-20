@@ -16,7 +16,7 @@
 			#$consulta=$this->db->query("SELECT * FROM dbpreguntadevs.PREGUNTAS LIMIT $empezar_desde, $tamanoPaginas");
 			#$consulta=$this->db->query("SELECT * FROM PREGUNTAS LIMIT $empezar_desde, $tamanoPaginas");  #hostinger
 			$consulta=$this->db->query("SELECT * FROM dbpreguntadevs.PREGUNTAS where NIVEL=$nivel AND ETIQUETA=$etiqueta"); #localhost
-			#$consulta=$this->db->query("SELECT * FROM PREGUNTAS"); #hostinger
+			#$consulta=$this->db->query("SELECT * FROM PREGUNTAS where NIVEL=$nivel AND ETIQUETA=$etiqueta"); #hostinger
 			while ($filas=$consulta->fetch(PDO::FETCH_ASSOC)) {
 				$this->registros[]=$filas; 
 			}

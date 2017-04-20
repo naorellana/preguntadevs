@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Editar Vista</title>
+	<title>Registrar Nueva Pregunta</title>
 	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="icon" type="image/png" href="../imgs/umglogo.png" />
+    <link rel="icon" type="image/png" href="../imgs/PREGUNTADEVS.png" />
   <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../css/style.css">
 
@@ -32,8 +32,8 @@ alert("¡Gracias Por Contactarnos!");}
 
 
 <body class="">
-	<div class="container-fluid">  
-		<header class="hidden">  <!-- barra de navegacion  -->
+	<div class="container-fluid ">  
+		<header>  <!-- barra de navegacion  -->
 			<nav class=" navbar navbar-default navbar-fixed-top navbar-inverse"> 
 				<div class="container-fluid">
 					<div class="navbar-header "> 
@@ -42,24 +42,23 @@ alert("¡Gracias Por Contactarnos!");}
 							<span class="glyphicon glyphicon-th-list"></span> <!-- usando un icono para que muestre como menu-->
 							<span class="icon-bar"></span> 
 						</button>
-						<a href="index.html" class="navbar-brand">Estadistica2</a> 
+						<a href="bienvenida.php" class="navbar-brand">< ? PREGUNTADEVS ?></a> 
 					</div>
 					<div class="collapse navbar-collapse" id="navbar-1">
 						<ul class="nav navbar-nav">
-							<li><a href="#"> <span class="glyphicon glyphicon-envelope visible-xs"> Contacto </span> <span class="visible-sm visible-md visible-lg">  Contacto</span> </a></li>
-							<li><a href="pacman.html">  <span class="glyphicon glyphicon-folder-open visible-xs"> Jugar </span> <span class="visible-sm visible-md visible-lg">  Jugar</span></a></li>
+							<li><a href="acerca-de-preguntadevs.php"> <span class="glyphicon glyphicon-info-sign visible-xs"> Acerca De </span> <span class="visible-sm visible-md visible-lg">  Acerca De</span> </a></li>
 							<li>
-								<a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-extended="true"><span class="glyphicon glyphicon-user visible-xs"> Perfil </span> <span class="visible-sm visible-md visible-lg">  Perfil <span class="caret"></span> </span>
+								<a class=" dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-extended="true"><span class="glyphicon glyphicon-user visible-xs"> <?php echo $_SESSION["sessionUsuario"];	 ?> </span> <span class="visible-sm visible-md visible-lg">  <?php echo $_SESSION["sessionUsuario"];	 ?> <span class="caret"></span> </span>
 				<!-- icono del trianguilito-->
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> <!--lista de elemnetos -->
-				<li><a href="#"> <span class="glyphicon glyphicon-briefcase visible-xs"> Tablero </span> <span class="visible-sm visible-md visible-lg">  Tablero</span> </a></li>
-				<li><a href="#"> <span class="glyphicon glyphicon-user visible-xs"> Configuracion </span> <span class="visible-sm visible-md visible-lg">  Configuracion</span> </a></li>
+				<li><a href="configuracion-usuarios.php"> <span class="glyphicon glyphicon-user visible-xs"> Configuracion </span> <span class="visible-sm visible-md visible-lg">  Configuracion</span> </a></li>
+				<li><a href="php/cerrarSession.php"> <span class="glyphicon glyphicon-remove-sign visible-xs"> Cerrar Sesión </span> <span class="visible-sm visible-md visible-lg">  Cerrar Sesión</span> </a></li>
 			</ul>
 							</li>
 						</ul>
 
-						<form action="http://www.google.es/search" method="GET" class="navbar-form navbar-right" role="search" >
+						<form action="http://www.google.es/search" method="GET" class="navbar-form navbar-right" role="search" > 
 						<div class="form-group">
 							<input type="hidden" name="ie" value="UTF-8">
 							<input type="hidden" name="ie" value="UTF-8">
