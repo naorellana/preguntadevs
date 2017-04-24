@@ -94,12 +94,12 @@ alert("¡Tus respuestas fueron enviadas!");}
 	
 	<?php 
 	$USUARIO=$_SESSION["sessionUsuario"];
-		if (!isset($_POST["guardar"])){
+		if (!isset($_POST["actUsuario"])){
 			require_once("modelo/conectarModelo.php");
 				$base=Conectar::conexion();
 				#$base->query($sentenciaSQL);
 				$consulta="SELECT * FROM TBPERSONA"; #HOSTINGER
-				#$consulta="SELECT * FROM dbpreguntadevs.TBPERSONA WHERE USUARIO='$USUARIO'"; #localhost
+				$consulta="SELECT * FROM dbpreguntadevs.TBPERSONA WHERE USUARIO='$USUARIO'"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					
@@ -113,54 +113,57 @@ alert("¡Tus respuestas fueron enviadas!");}
 			$FECHANAC= trim($dato["FECHANAC"]);
 			$USUARIO= trim($dato["USUARIO"]);
 			$CONTRASENA= trim($dato["CONTRASENA"]);
+			#$sentenciaSQL="UPDATE dbpreguntadevs.tbpersona SET `CORREO`='$CORREO',`NOMBRE1`='$NOMBRE1',`NOMBRE2`=''$NOMBRE2',`APELLIDO1`='$APELLIDO1',`APELLIDO2`='$APELLIDO2',`PAIS`='$PAIS',`FECHANAC`='$FECHANAC',`CONTRASENA`='$CONTRASENA' WHERE USUARIO='$USUARIO'";
+			#echo $sentenciaSQL;
 
 		}else{
-			$CORREO =trim($_GET["CORREO"]);
-			$NOMBRE1=trim($_GET["NOMBRE1"]);
-			$NOMBRE2=trim($_GET["NOMBRE2"]);
-			$APELLIDO1=trim($_GET["APELLIDO1"]);
-			$APELLIDO2= trim($_GET["APELLIDO2"]);
-			$PAIS= trim($_GET["PAIS"]);
-			$FECHANAC= trim($_GET["FECHANAC"]);
-			$USUARIO= trim($_GET["USUARIO"]);
-			$CONTRASENA= trim($_GET["CONTRASENA"]);
-			$sentenciaSQL="UPDATE dbpreguntadevs.TBPERSONA SET `CORREO`='".$usuarioId."',`NOMBRE1`='".$NOMBRE1."',`NOMBRE2`='".$NOMBRE2 ."',`APELLIDO1`='".$APELLIDO1."',`APELLIDO2`='".$APELLIDO2."',`PAIS`='".$PAIS."' WHERE dbpreguntadevs.TBPERSONA.`USUARIO`='".$USUARIOUSUARIO ."';";
-echo $sentenciaSQL;
-require_once("../modelo/conectarModelo.php");
+			$CORREO =trim($_POST["CORREO"]);
+			$NOMBRE1=trim($_POST["NOMBRE1"]);
+			$NOMBRE2=trim($_POST["NOMBRE2"]);
+			$APELLIDO1=trim($_POST["APELLIDO1"]);
+			$APELLIDO2= trim($_POST["APELLIDO2"]);
+			$PAIS= trim($_POST["PAIS"]);
+			$FECHANAC= trim($_POST["FECHANAC"]);
+			$USUARIO= trim($_SESSION["sessionUsuario"]);
+			$CONTRASENA= trim($_POST["CONTRASENA"]);
+			$sentenciaSQL="UPDATE dbpreguntadevs.tbpersona SET `CORREO`='$CORREO',`NOMBRE1`='$NOMBRE1',`NOMBRE2`='$NOMBRE2',`APELLIDO1`='$APELLIDO1',`APELLIDO2`='$APELLIDO2',`PAIS`='$PAIS',`FECHANAC`='$FECHANAC',`CONTRASENA`='$CONTRASENA' WHERE USUARIO='$USUARIO'";
+			#$sentenciaSQL="UPDATE dbpreguntadevs.TBPERSONA SET `CORREO`='".$CORREO."',`NOMBRE1`='".$NOMBRE1."',`NOMBRE2`='".$NOMBRE2 ."',`APELLIDO1`='".$APELLIDO1."',`APELLIDO2`='".$APELLIDO2."',`PAIS`='".$PAIS."' WHERE dbpreguntadevs.TBPERSONA.`USUARIO`='".$USUARIOUSUARIO ."';";
+#echo $sentenciaSQL;
+require_once("modelo/conectarModelo.php");
 $base=Conectar::conexion();
-#$base->query($sentenciaSQL);
+$base->query($sentenciaSQL);
 		}
-			echo "<div class=\"panel panel-primary visible-xs visible-sm\">
+			echo "<div class=\"panel panel-primary visible-sm visible-xs\">
 		
 	  <!-- Default panel contents -->
 	   <div class=\"panel-heading\">Editar Información </div>
 	  <div class=\"panel-body\">
 	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
 			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for=\"CORREO\" class=\"hidden\">usuarioid:</label>
-				<input type=\"text\" name=\"CORREO\" id=\"CORREO\" class=\"form-control hidden\" value='".$CORREO."' placeholder=\"". $CORREO."\">
-				<label for=\"NOMBRE1\">nombre1:</label>
+				<label for=\"CORREO\" class=\"\">CORREO:</label>
+				<input type=\"text\" name=\"CORREO\" id=\"CORREO\" class=\"form-control \" value='".$CORREO."' placeholder=\"". $CORREO."\">
+				<label for=\"NOMBRE1\">PRIMER NOMBRE:</label>
 				<input type=\"text\" name=\"NOMBRE1\" id=\"NOMBRE1\" class=\"form-control\" placeholder=\"".$NOMBRE1." \" value='".$NOMBRE1."'>
-				<label for=\"NOMBRE2\">nombre2:</label>
+				<label for=\"NOMBRE2\">SEGUNDO NOMBRE:</label>
 				<input type=\"text\" name=\"NOMBRE2\" id=\"NOMBRE2\" class=\"form-control\" placeholder=\"". $NOMBRE2." \" value= \"".$NOMBRE2."\">
-				<label for=\"APELLIDO1\">apellido1:</label>
+				<label for=\"APELLIDO1\">PRIMER APELLIDO:</label>
 				<input type=\"text\" name=\"APELLIDO1\" id=\"APELLIDO1\" class=\"form-control\" placeholder=\"". $APELLIDO1." \" value= \"".$APELLIDO1."\">
-				<label for=\"APELLIDO2\">apellido2:</label>
-				<input type=\"text\" name=\"apellido2\" id=\"APELLIDO2\" class=\"form-control\" placeholder=\"". $APELLIDO2." \" value=\"".$APELLIDO2."\">
-				<label for=\"PAIS\">PAIS:</label>
+				<label for=\"APELLIDO2\">SEGUNDO APELLIDO:</label>
+				<input type=\"text\" name=\"APELLIDO2\" id=\"APELLIDO2\" class=\"form-control\" placeholder=\"". $APELLIDO2." \" value=\"".$APELLIDO2."\">
+				<label for=\"PAIS\">PAÍS:</label>
 				<input type=\"text\" name=\"PAIS\" id=\"PAIS\" class=\"form-control\" placeholder=\"". $PAIS." \" value=\"".$PAIS."\">
-				<label for=\"FECHANAC\">FECHANAC:</label>
+				<label for=\"FECHANAC\">FECHA NACIMIENTO:</label>
 				<input type=\"text\" name=\"FECHANAC\" id=\"FECHANAC\" class=\"form-control\" placeholder=\"". $FECHANAC." \" value=\"".$FECHANAC."\">
-				<label for=\"CONTRASENA\">CONTRASENA:</label>
+				<label for=\"CONTRASENA\">CONTRASEÑA:</label>
 				<input type=\"password\" name=\"CONTRASENA\" id=\"CONTRASENA\" class=\"form-control\" placeholder=\"". $CONTRASENA." \" value=\"".$CONTRASENA."\">
 			</div>
-		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"../modelo/comandosql.php\"> Guardar</button>
+		<button name=\"actUsuario\" id=\"actUsuario\" class=\"btn btn-success\" onclick=\"\"> Actualizar</button>
 	</form>
 		   
 	  </div>
 
 	</div>";
-	echo "<td> <a href='modelo/borrarRegistrosModelo.php?usuarioId=". $USUARIO . "' > <button class='btn btn-danger visible-xs visible-sm'> Eliminar Cuenta</button> </a>  </td> <br> <br>";
+	#echo "<td> <a href='modelo/borrarRegistrosModelo.php?usuarioId=". $USUARIO . "' > <button class='btn btn-danger visible-xs visible-sm'> Eliminar Cuenta</button> </a>  </td> <br> <br>";
 
 	
 	
@@ -169,47 +172,67 @@ $base=Conectar::conexion();
 
 
 
-  
-</div>
-	<div class="row">
-		<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% DE USUARIO</h3>
-      <div class="caption bg-info">
-        <span class="glyphicon glyphicon-user"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS CORRECCTAS</h3>
-      <div class="caption bg-success">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% RESPUESTAS ERRONEAS</h3>
-      <div class="caption bg-danger">
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-	</div>
+<?php 	
+echo "</div>
+	<div class=\"row\">
+		<div class=\"\">
+  <div class=\"col-sm-6 col-md-4\">
+    <div class=\"thumbnail\">
+      <h3>TOTAL DE RESPUESTAS </h3>
+      <div class=\"caption bg-info\">
+        <span class=\"glyphicon glyphicon-user\"></span>
+        <p>";
+        $USUARIO= trim($_SESSION["sessionUsuario"]);
+        $consulta="SELECT COUNT(*) FROM dbpreguntadevs.bitpreguntas WHERE USUARIO='$USUARIO'";
+				foreach ($base->query($consulta) as $dato) {
 	
+    	}
+		echo "TOTAL DE RESPUESTAS ".$dato['COUNT(*)'];
+        echo "</p>
+        <!--<p><a href=\"#\" class=\"btn btn-primary\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class=\"\">
+  <div class=\"col-sm-6 col-md-4\">
+    <div class=\"thumbnail\">
+      <h3>% RESPUESTAS CORRECTAS</h3>
+      <div class=\"caption bg-success\">
+        <span class=\"glyphicon glyphicon-thumbs-up\"></span>
+        <p>";
+        $consulta="SELECT COUNT(*) FROM dbpreguntadevs.bitpreguntas WHERE USUARIO='$USUARIO' and RESPENVIADA=RESPCO";
+				foreach ($base->query($consulta) as $dato) {
+	
+    	}
+    	echo "TOTAL DE RESPUESTAS CORRECTAS ".$dato['COUNT(*)'];
+        echo"</p>
+        <!--<p><a href=\"#\" class=\"btn btn-success\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class=\"\">
+  <div class=\"col-sm-6 col-md-4\">
+    <div class=\"thumbnail\">
+      <h3>% RESPUESTAS ERRONEAS</h3>
+      <div class=\"caption bg-danger\">
+        <span class=\"glyphicon glyphicon-thumbs-down\"></span>
+        <p>";
+        $consulta="SELECT COUNT(*) FROM dbpreguntadevs.bitpreguntas WHERE USUARIO='$USUARIO' and RESPENVIADA!=RESPCO";
+				foreach ($base->query($consulta) as $dato) {
+	
+    	}
+    	echo "TOTAL DE RESPUESTAS ERRONEAS ".$dato['COUNT(*)'];
+        echo"</p>
+        <!-- <p><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p> -->
+      </div>
+    </div>
+  </div>
+</div>
+	</div>";
+	
+?>
 <?php
 if (isset($_POST["generar"])){
 		$N=trim( $_POST["NIVELT"]);
@@ -220,7 +243,7 @@ $matrizRegistros=$registros->getRegistros($N,$e);
 require_once("vista/preguntasVista.php");
 
 			}
-		echo "<div class=\"panel panel-primary\">
+		echo "<div class=\"panel panel-primary visible-md visible-lg\">
 		
 	  <!-- Default panel contents -->
 	   <div class=\"panel-heading\"> Nuevo Test </div>
@@ -233,7 +256,7 @@ require_once("vista/preguntasVista.php");
 				$base=Conectar::conexion();
 				#$base->query($sentenciaSQL);
 				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
-				#$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
+				$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
@@ -242,7 +265,7 @@ require_once("vista/preguntasVista.php");
 				<label for=\"ETIQUETAT\">*ETIQUETA O CATEGORIA:</label>
 				<select name=\"ETIQUETAT\" id=\"ETIQUETAT\" class=\"form-control\">";
 				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
-				#$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";
@@ -270,12 +293,12 @@ require_once("vista/preguntasVista.php");
 
 	<?php 
 	$USUARIO=$_SESSION["sessionUsuario"];
-		if (!isset($_POST["guardar"])){
+		if (!isset($_POST["actUsuario"])){
 			require_once("modelo/conectarModelo.php");
 				$base=Conectar::conexion();
 				#$base->query($sentenciaSQL);
 				$consulta="SELECT * FROM TBPERSONA"; #HOSTINGER
-				#$consulta="SELECT * FROM dbpreguntadevs.TBPERSONA WHERE USUARIO='$USUARIO'"; #localhost
+				$consulta="SELECT * FROM dbpreguntadevs.TBPERSONA WHERE USUARIO='$USUARIO'"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					
@@ -289,22 +312,25 @@ require_once("vista/preguntasVista.php");
 			$FECHANAC= trim($dato["FECHANAC"]);
 			$USUARIO= trim($dato["USUARIO"]);
 			$CONTRASENA= trim($dato["CONTRASENA"]);
+			#$sentenciaSQL="UPDATE dbpreguntadevs.tbpersona SET `CORREO`='$CORREO',`NOMBRE1`='$NOMBRE1',`NOMBRE2`=''$NOMBRE2',`APELLIDO1`='$APELLIDO1',`APELLIDO2`='$APELLIDO2',`PAIS`='$PAIS',`FECHANAC`='$FECHANAC',`CONTRASENA`='$CONTRASENA' WHERE USUARIO='$USUARIO'";
+			#echo $sentenciaSQL;
 
 		}else{
-			$CORREO =trim($_GET["CORREO"]);
-			$NOMBRE1=trim($_GET["NOMBRE1"]);
-			$NOMBRE2=trim($_GET["NOMBRE2"]);
-			$APELLIDO1=trim($_GET["APELLIDO1"]);
-			$APELLIDO2= trim($_GET["APELLIDO2"]);
-			$PAIS= trim($_GET["PAIS"]);
-			$FECHANAC= trim($_GET["FECHANAC"]);
-			$USUARIO= trim($_GET["USUARIO"]);
-			$CONTRASENA= trim($_GET["CONTRASENA"]);
-			$sentenciaSQL="UPDATE dbpreguntadevs.TBPERSONA SET `CORREO`='".$usuarioId."',`NOMBRE1`='".$NOMBRE1."',`NOMBRE2`='".$NOMBRE2 ."',`APELLIDO1`='".$APELLIDO1."',`APELLIDO2`='".$APELLIDO2."',`PAIS`='".$PAIS."' WHERE dbpreguntadevs.TBPERSONA.`USUARIO`='".$USUARIOUSUARIO ."';";
-echo $sentenciaSQL;
-require_once("../modelo/conectarModelo.php");
+			$CORREO =trim($_POST["CORREO"]);
+			$NOMBRE1=trim($_POST["NOMBRE1"]);
+			$NOMBRE2=trim($_POST["NOMBRE2"]);
+			$APELLIDO1=trim($_POST["APELLIDO1"]);
+			$APELLIDO2= trim($_POST["APELLIDO2"]);
+			$PAIS= trim($_POST["PAIS"]);
+			$FECHANAC= trim($_POST["FECHANAC"]);
+			$USUARIO= trim($_SESSION["sessionUsuario"]);
+			$CONTRASENA= trim($_POST["CONTRASENA"]);
+			$sentenciaSQL="UPDATE dbpreguntadevs.tbpersona SET `CORREO`='$CORREO',`NOMBRE1`='$NOMBRE1',`NOMBRE2`='$NOMBRE2',`APELLIDO1`='$APELLIDO1',`APELLIDO2`='$APELLIDO2',`PAIS`='$PAIS',`FECHANAC`='$FECHANAC',`CONTRASENA`='$CONTRASENA' WHERE USUARIO='$USUARIO'";
+			#$sentenciaSQL="UPDATE dbpreguntadevs.TBPERSONA SET `CORREO`='".$CORREO."',`NOMBRE1`='".$NOMBRE1."',`NOMBRE2`='".$NOMBRE2 ."',`APELLIDO1`='".$APELLIDO1."',`APELLIDO2`='".$APELLIDO2."',`PAIS`='".$PAIS."' WHERE dbpreguntadevs.TBPERSONA.`USUARIO`='".$USUARIOUSUARIO ."';";
+#echo $sentenciaSQL;
+require_once("modelo/conectarModelo.php");
 $base=Conectar::conexion();
-#$base->query($sentenciaSQL);
+$base->query($sentenciaSQL);
 		}
 			echo "<div class=\"panel panel-primary\">
 		
@@ -313,35 +339,34 @@ $base=Conectar::conexion();
 	  <div class=\"panel-body\">
 	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
 			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
-				<label for=\"CORREO\" class=\"hidden\">usuarioid:</label>
-				<input type=\"text\" name=\"CORREO\" id=\"CORREO\" class=\"form-control hidden\" value='".$CORREO."' placeholder=\"". $CORREO."\">
-				<label for=\"NOMBRE1\">nombre1:</label>
+				<label for=\"CORREO\" class=\"\">CORREO:</label>
+				<input type=\"text\" name=\"CORREO\" id=\"CORREO\" class=\"form-control \" value='".$CORREO."' placeholder=\"". $CORREO."\">
+				<label for=\"NOMBRE1\">PRIMER NOMBRE:</label>
 				<input type=\"text\" name=\"NOMBRE1\" id=\"NOMBRE1\" class=\"form-control\" placeholder=\"".$NOMBRE1." \" value='".$NOMBRE1."'>
-				<label for=\"NOMBRE2\">nombre2:</label>
+				<label for=\"NOMBRE2\">SEGUNDO NOMBRE:</label>
 				<input type=\"text\" name=\"NOMBRE2\" id=\"NOMBRE2\" class=\"form-control\" placeholder=\"". $NOMBRE2." \" value= \"".$NOMBRE2."\">
-				<label for=\"APELLIDO1\">apellido1:</label>
+				<label for=\"APELLIDO1\">PRIMER APELLIDO:</label>
 				<input type=\"text\" name=\"APELLIDO1\" id=\"APELLIDO1\" class=\"form-control\" placeholder=\"". $APELLIDO1." \" value= \"".$APELLIDO1."\">
-				<label for=\"APELLIDO2\">apellido2:</label>
-				<input type=\"text\" name=\"apellido2\" id=\"APELLIDO2\" class=\"form-control\" placeholder=\"". $APELLIDO2." \" value=\"".$APELLIDO2."\">
-				<label for=\"PAIS\">PAIS:</label>
+				<label for=\"APELLIDO2\">SEGUNDO APELLIDO:</label>
+				<input type=\"text\" name=\"APELLIDO2\" id=\"APELLIDO2\" class=\"form-control\" placeholder=\"". $APELLIDO2." \" value=\"".$APELLIDO2."\">
+				<label for=\"PAIS\">PAÍS:</label>
 				<input type=\"text\" name=\"PAIS\" id=\"PAIS\" class=\"form-control\" placeholder=\"". $PAIS." \" value=\"".$PAIS."\">
-				<label for=\"FECHANAC\">FECHANAC:</label>
+				<label for=\"FECHANAC\">FECHA NACIMIENTO:</label>
 				<input type=\"text\" name=\"FECHANAC\" id=\"FECHANAC\" class=\"form-control\" placeholder=\"". $FECHANAC." \" value=\"".$FECHANAC."\">
-				<label for=\"CONTRASENA\">CONTRASENA:</label>
+				<label for=\"CONTRASENA\">CONTRASEÑA:</label>
 				<input type=\"password\" name=\"CONTRASENA\" id=\"CONTRASENA\" class=\"form-control\" placeholder=\"". $CONTRASENA." \" value=\"".$CONTRASENA."\">
 			</div>
-		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"../modelo/comandosql.php\"> Guardar</button>
+		<button name=\"actUsuario\" id=\"actUsuario\" class=\"btn btn-success\" onclick=\"\"> Actualizar</button>
 	</form>
 		   
 	  </div>
 
 	</div>";
-	echo "<td> <a href='modelo/borrarRegistrosModelo.php?usuarioId=". $USUARIO . "' > <button class='btn btn-danger'> Eliminar Cuenta</button> </a>  </td> <br> <br>";
+	#echo "<td> <a href='modelo/borrarRegistrosModelo.php?usuarioId=". $USUARIO . "' > <button class='btn btn-danger visible-xs visible-sm'> Eliminar Cuenta</button> </a>  </td> <br> <br>";
 
 	
 	
 		 ?>
-
 
   	<?php 
 
@@ -393,7 +418,7 @@ $base->query($sentenciaSQL);
 				$base=Conectar::conexion();
 				#$base->query($sentenciaSQL);
 				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
-				#$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
+				$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
@@ -402,7 +427,7 @@ $base->query($sentenciaSQL);
 				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
 				<select name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\">";
 				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
-				#$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";

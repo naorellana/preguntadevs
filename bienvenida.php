@@ -22,6 +22,8 @@ function alerta() {
 alert("¡Gracias Por Contactarnos!");}
 function alertaTest() {
 alert("¡Tus respuestas fueron enviadas!");}
+function alertaCuestionario() {
+alert("Aun no contamos con evaluaciones en la categoria y nivel selecionado por favor intenta con otras opciones o ingresa más preguntas para colaborar con PPREGUNTADEVS");}
 </script>
 <?php 
 	session_start();
@@ -100,10 +102,26 @@ if (isset($_POST["generar"])){
 		$e=trim( $_POST["ETIQUETAT"]);
 		require_once("modelo/preguntaModelo.php");
 $registros=new Preguntas_modelo();
-$matrizRegistros=$registros->getRegistros($N,$e);	
-require_once("vista/preguntasVista.php");
+$matrizRegistros=$registros->getRegistros($N,$e);
+require_once("modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$consulta=$this->db->query("SELECT * FROM PREGUNTAS LIMIT $empezar_desde, $tamanoPaginas");  #hostinger
+			$consulta="SELECT count(*) FROM dbpreguntadevs.PREGUNTAS where NIVEL=$N AND ETIQUETA=$e ORDER BY rand() LIMIT 10"; #localhost	
+			foreach ($base->query($consulta) as $dato) {
+	
+    	}
+    	if ($dato["count(*)"]<10) {
+    	 	echo "<script type=\"text/javascript\"><!--
+ // aqui va tu javascript...
+
+ alertaCuestionario();
+--></script> ";
 
 			}
+			else{
+				require_once("vista/preguntasVista.php");
+			}
+		}
 		echo "<div class=\"panel panel-primary\">
 		
 	  <!-- Default panel contents -->
@@ -117,7 +135,7 @@ require_once("vista/preguntasVista.php");
 				$base=Conectar::conexion();
 				#$base->query($sentenciaSQL);
 				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
-				#$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
+				$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
@@ -126,7 +144,7 @@ require_once("vista/preguntasVista.php");
 				<label for=\"ETIQUETAT\">*ETIQUETA O CATEGORIA:</label>
 				<select name=\"ETIQUETAT\" id=\"ETIQUETAT\" class=\"form-control\">";
 				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
-				#$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";
@@ -137,53 +155,144 @@ require_once("vista/preguntasVista.php");
 		<button name=\"generar\" id=\"generar\" class=\"btn btn-success\" onclick=\"\"> generar</button>  
 	</form>
 	  </div>
-	</div>";
-	 ?>	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
+	</div>";#	 	  <!-- llama a la tabla ya con datos y estilos desde vista/tablaVista.php -->
 
 
   
-</div>
-	<div class="row">
-		<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <h3>% DE USUARIO</h3>
-      <div class="caption bg-info">
-        <span class="glyphicon glyphicon-user"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+echo ";</div>
+	<div class=\"row\">
+		<div class=\"\">
+  <div class=\"col-sm-6 col-md-4\">
+    <div class=\"thumbnail\">
+      <h3>TOTAL DE RESPUESTAS </h3>
+      <div class=\"caption bg-info\">
+        <span class=\"glyphicon glyphicon-user\"></span>
+        <p>";
+        $USUARIO= trim($_SESSION["sessionUsuario"]);
+        $consulta="SELECT COUNT(*) FROM dbpreguntadevs.bitpreguntas WHERE USUARIO='$USUARIO'";
+				foreach ($base->query($consulta) as $dato) {
+	
+    	}
+		echo "TOTAL DE RESPUESTAS ".$dato['COUNT(*)'];
+        echo "</p>
+        <!--<p><a href=\"#\" class=\"btn btn-primary\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p> -->
       </div>
     </div>
   </div>
 </div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
+<div class=\"\">
+  <div class=\"col-sm-6 col-md-4\">
+    <div class=\"thumbnail\">
       <h3>% RESPUESTAS CORRECTAS</h3>
-      <div class="caption bg-success">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      <div class=\"caption bg-success\">
+        <span class=\"glyphicon glyphicon-thumbs-up\"></span>
+        <p>";
+        $consulta="SELECT COUNT(*) FROM dbpreguntadevs.bitpreguntas WHERE USUARIO='$USUARIO' and RESPENVIADA=RESPCO";
+				foreach ($base->query($consulta) as $dato) {
+	
+    	}
+    	echo "TOTAL DE RESPUESTAS CORRECTAS ".$dato['COUNT(*)'];
+        echo"</p>
+        <!--<p><a href=\"#\" class=\"btn btn-success\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>-->
       </div>
     </div>
   </div>
 </div>
-<div class="">
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
+<div class=\"\">
+  <div class=\"col-sm-6 col-md-4\">
+    <div class=\"thumbnail\">
       <h3>% RESPUESTAS ERRONEAS</h3>
-      <div class="caption bg-danger">
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-        <p>... Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit esse ipsa, inventore dolores, cupiditate earum. Nobis et, esse earum. Aliquam placeat quidem, nesciunt perferendis cupiditate recusandae explicabo harum a modi.</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      <div class=\"caption bg-danger\">
+        <span class=\"glyphicon glyphicon-thumbs-down\"></span>
+        <p>";
+        $consulta="SELECT COUNT(*) FROM dbpreguntadevs.bitpreguntas WHERE USUARIO='$USUARIO' and RESPENVIADA!=RESPCO";
+				foreach ($base->query($consulta) as $dato) {
+	
+    	}
+    	echo "TOTAL DE RESPUESTAS ERRONEAS ".$dato['COUNT(*)'];
+        echo"</p>
+        <!-- <p><a href=\"#\" class=\"btn btn-danger\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p> -->
       </div>
     </div>
   </div>
 </div>
-	</div>
+	</div>";
+	
+?>
+<?php 
+
+		if (isset($_POST["guardar"])){
+			$PREGUNTA =trim( $_POST["PREGUNTA"]);
+			$RESPA=trim($_POST["RESPA"]);
+			$RESPB=trim($_POST["RESPB"]);
+			$RESPC= trim($_POST["RESPC"]);
+			$RESPCORRECTA= trim($_POST["RESPCORRECTA"]);
+			$NIVEL= trim($_POST["NIVEL"]);
+			$ETIQUETA= trim($_POST["ETIQUETA"]);
+			$USUARIO= trim($_SESSION["sessionUsuario"]);
+			#$sentenciaSQL="UPDATE dbpreguntadevs.tbusuarios SET `usuarioId`='".$usuarioId."',`nombre1`='".$nombre1."',`nombre2`='".$nombre2 ."',`apellido1`='".$apellido1."',`apellido2`='".$apellido2."',`claveSeguridad`='".$claveSeguridad."' WHERE dbpreguntadevs.tbusuarios.`usuarioId`='".$usuarioId ."';";
+			#$sentenciaSQL="INSERT INTO dbpreguntadevs.tbusuarios(`usuarioId`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `claveSeguridad`) VALUES ('".$usuarioId."','".$nombre1."','".$nombre2."','".$apellido1."','".$apellido2."','".$claveSeguridad."');";
+			$sentenciaSQL="INSERT INTO dbpreguntadevs.PREGUNTAS (`IDPREGUNTA`, `PREGUNTA`, `RESPA`, `RESPB`, `RESPC`, `RESPCORRECTA`, `USUARIO`, `NIVEL`, `ETIQUETA`) 
+			VALUES (0,'".$PREGUNTA."','". $RESPA."','". $RESPB ."','". $RESPC."',". $RESPCORRECTA.",'". $USUARIO."',". $NIVEL.",". $ETIQUETA.");";
+echo $sentenciaSQL;
+require_once("modelo/conectarModelo.php");
+$base=Conectar::conexion();
+$base->query($sentenciaSQL);
+
 	
 
+		}
+			echo "<div class=\"panel panel-primary visible-xs visible-sm\">
+		
+	  <!-- Default panel contents -->
+	   <div class=\"panel-heading\"> Agregar Pregunta </div>
+	  <div class=\"panel-body\">
+	    <form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">
+			<div class=\"form-group\"> <!-- agrupa los elementos y deja un espaciado-->
+				<label for=\"PREGUNTA\">*PREGUNTA:</label>
+				<input type=\"text\" name=\"PREGUNTA\" id=\"PREGUNTA\" class=\"form-control\" placeholder=\"PREGUNTA\">
+				<label for=\"RESPA\">* RESPUESTA A:</label>
+				<input type=\"text\" name=\"RESPA\" id=\"RESPA\" class=\"form-control\" placeholder=\"RESPUESTA A\" '>
+				<label for=\"RESPB\">*RESPUESTA B:</label>
+				<input type=\"text\" name=\"RESPB\" id=\"RESPB\" class=\"form-control\" placeholder=\"RESPUESTA B\">
+				<label for=\"RESPC\">*RESPUESTA C:</label>
+				<input type=\"text\" name=\"RESPC\" id=\"RESPC\" class=\"form-control\" placeholder=\"RESPUESTA C\">
+				<label for=\"RESPCORRECTA\">*RESPUESTA CORRECTA:</label>
+				<select name=\"RESPCORRECTA\" id=\"RESPCORRECTA\" class=\"form-control\">
+				  <option value=\"1\">A</option>
+				  <option value=\"2\">B</option>
+				  <option value=\"3\">C</option>
+				</select>
+				<label for=\"NIVEL\">*NIVEL PREGUNTA:</label>
+				<select name=\"NIVEL\" id=\"NIVEL\" class=\"form-control\">";
+				require_once("modelo/conectarModelo.php");
+				$base=Conectar::conexion();
+				#$base->query($sentenciaSQL);
+				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
+				$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
+				    }	
+				echo "</select>
+				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
+				<select name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\">";
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
+				$dato="";
+				foreach ($base->query($consulta) as $dato) {
+					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";
+				    }	
+				echo "</select>
+			</div>
+		<button name=\"guardar\" id=\"guardar\" class=\"btn btn-success\" onclick=\"\"> Guardar</button>
+	</form>
+	  </div>
+	</div>";
 
+	
+	
+		 ?>
 
 
 			
@@ -245,7 +354,7 @@ $base->query($sentenciaSQL);
 				$base=Conectar::conexion();
 				#$base->query($sentenciaSQL);
 				$consulta="SELECT IDNIVEL, NIVEL FROM NIVEL"; #HOSTINGER
-				#$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
+				$consulta="SELECT IDNIVEL, NIVEL FROM dbpreguntadevs.NIVEL"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDNIVEL']."\">".$dato['NIVEL']."</option>";
@@ -254,7 +363,7 @@ $base->query($sentenciaSQL);
 				<label for=\"ETIQUETA\">*ETIQUETA O CATEGORIA:</label>
 				<select name=\"ETIQUETA\" id=\"ETIQUETA\" class=\"form-control\">";
 				$consulta="SELECT IDETIQUETA, ETIQUETA FROM ETIQUETAS"; #HOSTINGER
-				#$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
+				$consulta="SELECT IDETIQUETA, ETIQUETA FROM dbpreguntadevs.ETIQUETAS"; #localhost
 				$dato="";
 				foreach ($base->query($consulta) as $dato) {
 					echo "<option value=\"".$dato['IDETIQUETA']."\">".$dato['ETIQUETA']."</option>";

@@ -16,15 +16,17 @@
   <tr class="bg-info">
   	<td><b>PREGUNTA</b></td>
   	<td><b>SELECIONE RESPUESTA</b></td>
-  	<form action="modelo/respuestasTest.php">
+  	<form action="vista/respuestasTest.php">
   </tr>
     <?php
 		#require_once("controlador/tablaControlador.php");
      $pre=0;
      $id=10;
+     $resc=20;
 		foreach ($matrizRegistros as $lin1) {
 			$pre++;
 			$id++;
+			$resc++;
 			$PREGUNTA= $lin1["PREGUNTA"];
 			$RESPA=$lin1["RESPA"];
 			$RESPB= $lin1["RESPB"];
@@ -35,11 +37,12 @@
 			$IDPREGUNTA= $lin1["IDPREGUNTA"];
 			$USUARIO= $lin1["USUARIO"];
 		 	echo "<tr><td>". $PREGUNTA . " </td>	";
-		 	echo "<input type='hidden' select name=\"$id\" id=\"$pre\" class=\"form-control\" value='$IDPREGUNTA'> </input>";
+		 	echo "<input type='hidden'  name=\"$id\" id=\"$pre\" class=\"form-control\" value='$IDPREGUNTA'> </input>";
+		 	echo "<input type='hidden'  name=\"$resc\" id=\"$resc\" class=\"form-control\" value='$RESPCORRECTA'> </input>";
 		 	echo "<td> <select name=\"$pre\" id=\"$pre\" class=\"form-control\"> 
-				  <option value=\"$RESPA\">$RESPA</option>
-				  <option value=\"$RESPB\">$RESPB</option>
-				  <option value=\"$RESPC\">$RESPC</option>
+				  <option value=\"1\">$RESPA</option>
+				  <option value=\"2\">$RESPB</option>
+				  <option value=\"3\">$RESPC</option>
 				</select></td>"; #pre es el numero de pregunta para identificar cada select y obtener de eso las respuestas
 		 	#boton para modificar
 		 	#echo "<td> <a href='vista/editarPreguntaVista.php?PREGUNTA=". $dato1 . " & RESPA= ". $dato2 . " & RESPB= ". $dato3 . " & RESPC= ". $dato4 . " & IDPREGUNTA= ". $dato5 . " & USUARIO= ". $dato6 .   " ' > <button class='btn-warning'> Editar </button> </a>  </td>";

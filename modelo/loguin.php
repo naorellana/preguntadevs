@@ -14,6 +14,7 @@ $sql="SELECT * FROM dbpreguntadevs.tbpersona WHERE USUARIO= :usuario AND CONTRAS
 			session_start();
 			$_SESSION["sessionUsuario"]=$_POST["usuario"];
 			header("location:../bienvenida.php");
+			$base->query("INSERT INTO dbpreguntadevs.bitlogueos (`USUARIO`, `FECHA`, `ACCION`) VALUES ('$usuario',NOW(), 2)");
 		}else{
 			header("location:../index.html");
 		}

@@ -49,7 +49,7 @@ alert("¡Gracias Por Contactarnos!");}
 				<!-- icono del trianguilito-->
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> <!--lista de elemnetos -->
-				<li><a href="#"> <span class="glyphicon glyphicon-user visible-xs"> Configuracion </span> <span class="visible-sm visible-md visible-lg">  Configuracion</span> </a></li>
+				<li><a href="configuracion-usuarios.php"> <span class="glyphicon glyphicon-user visible-xs"> Configuracion </span> <span class="visible-sm visible-md visible-lg">  Configuracion</span> </a></li>
 				<li><a href="php/cerrarSession.php"> <span class="glyphicon glyphicon-remove-sign visible-xs"> Cerrar Sesión </span> <span class="visible-sm visible-md visible-lg">  Cerrar Sesión</span> </a></li>
 			</ul>
 							</li>
@@ -100,9 +100,19 @@ alert("¡Gracias Por Contactarnos!");}
     <div class="thumbnail">
       <img  class="avatar thumbnail img-responsive  " src="imgs/PREGUNTADEVS.png"
       <div class="caption">
-        <h2>Acerca de PREGUNTADEVS</h2> <br>
+        <h2>Proyecto Final Del Curso de Estadistica</h2> 
+        <p>Universidad maria Galvez de Guatemla</p>
+        <p>Ingenieria En Sistemas</p>
+        <br>
+        <!--<p>Integrantes: </p>
+		<p>Nery Alexis Orellana Cuy</p>
+        <p>Francis Lopez</p>
+        <p>Carlos Cubur</p> -->
+        <br>
         <span class="glyphicon glyphicon-wrench texto-grande"> En Mantenimiento...</span> <span class="texto-grande glyphicon glyphicon-wrench">
+
       </div>
+
     </div>
   </div>
   </div>

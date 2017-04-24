@@ -106,7 +106,7 @@ require_once("../modelo/conectarModelo.php");
 $base=Conectar::conexion();
 $base->query($sentenciaSQL);
 $consulta="SELECT USUARIO, CONTRASENA FROM TBPERSONA where CORREO=\"$correo\";"."<br>";
-#$consulta="SELECT USUARIO, CONTRASENA FROM dbpreguntadevs.tbpersona where CORREO=\"$correo\";"."<br>";
+$consulta="SELECT USUARIO, CONTRASENA FROM dbpreguntadevs.tbpersona where CORREO=\"$correo\";"."<br>";
 $dato="";
 foreach ($base->query($consulta) as $dato) {
     }
@@ -116,6 +116,9 @@ foreach ($base->query($consulta) as $dato) {
     	Usuario: ".$dato['USUARIO'] ."\n
     	Contraseña: ".$dato["CONTRASENA"];
     	#echo $mensaje;
+
+    	#$base->query("INSERT INTO dbpreguntadevs.bitlogueos (`USUARIO`, `FECHA`, `ACCION`) VALUES ('$dato['USUARIO']',NOW(), 1)");
+
     	mail($correo, "Registro Exitoso a PREGUNTADEVS", $mensaje);
     }else{
     	$mensaje="Ocurrió Un Problema: \n Por Favor Registrate en: http://umgproyectos.hol.es/vista/agregarUsuario.php";
@@ -170,7 +173,7 @@ foreach ($base->query($consulta) as $dato) {
 				<label for="clave">Contraseña:</label>
 				<input type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña: ">
 			</div>
-		<button class="btn btn-success" onclick=""> Iniciar llSesión</button>
+		<button class="btn btn-success" onclick=""> Iniciar Sesión</button>
 	</form>
 	  </div>
 	</div>
